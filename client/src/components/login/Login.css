@@ -1,0 +1,23 @@
+.login-wrapper {
+    color: #FFFFFF;
+    height: 86vh;
+    width: 64vw;
+    margin: 100px auto;
+    display: flex;
+    background: #6C63FF;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+  }
+
+#submit {
+    color: #FFFFFF;
+    background-color: #302A92;
+    margin: 20px;
+    border: none;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
