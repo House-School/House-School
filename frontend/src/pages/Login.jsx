@@ -61,7 +61,6 @@ function Login() {
         <h1>
           <FaSignInAlt /> Login
         </h1>
-        <p>Login to your account</p>
       </section>
 
       <section className='form'>

@@ -9,6 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  color: #6C63FF;
 }
 
 a {
@@ -68,7 +69,7 @@ h3 {
 }
 
 .header ul li a:hover {
-  color: #777;
+  color: #6C63FF;
 }
 
 .header ul li a svg {
@@ -117,7 +118,7 @@ h3 {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
+  background: #302a92;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
