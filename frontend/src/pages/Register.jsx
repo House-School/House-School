@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import "./registerStyles.css"
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -64,13 +65,14 @@ function Register() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
+    <div className="regbg">
+    <section className='reg-heading'>
+        <h1 className='reg-h1'>
           <FaUser /> Register
         </h1>
       </section>
 
-      <section className='form'>
+      <section className='reg-form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input
@@ -117,12 +119,23 @@ function Register() {
             />
           </div>
           <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
+            <button type='submit' className='reg-btn reg-btn-block'>
               Submit
             </button>
           </div>
         </form>
       </section>
+      <section className='signin'>
+        <h3 className='reg-h3'>
+          Already have an account? 
+          <a>
+            <Link to='/login'>
+                Sign in.
+            </Link>
+          </a>   
+        </h3>
+      </section>
+    </div>    
     </>
   )
 }

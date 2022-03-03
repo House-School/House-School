@@ -6,116 +6,72 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  color: #6C63FF;
-}
-
-a {
-  text-decoration: none;
-  color: #302A92;
-}
-
-.logout-a {
-  color: #ffffff;
-}
-
-p {
-  line-height: 1.7;
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  line-height: 2.2;
-}
-
-h1,
-h2,
-h3 {
+.dash-h1 {
+  color:#302a92;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.container {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px;
-  text-align: center;
+.flex-container {
+    display: flex;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  margin-bottom: 30px;
+.dashbg {
+    margin: 0 0 0 20px;
+    background-color: #ffffff;
+    height: 550px;
+    width: 1100px;
+    border-radius: 30px;
+}
+
+.dash-menu {
+    margin-top: 60px;
+    margin-right: 10px;
+    background-color: #505da500;
+    border-radius: 20px;
+    height: 420px;
+    width: 160px;
+}
+
+.dash-menu-selected {
+    margin-left: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-style: hidden;
+    height: 60px;
+    width: 200px;
+    color: #2D355F;
+    font-size: 16px;
+    font-weight: 700;
+    pointer-events: none;
+}
+
+.dash-menu-item {
+  padding: 20px 10px;
+  width: 150px;
   border-bottom: 1px solid #2D355F;
-}
-
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header ul li {
-  margin-left: 20px;
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.header ul li a:hover {
-  color: #6C63FF;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
-.heading {
-  font-size: 2rem;
+  border-top: #ffffff00;
+  border-left: #ffffff00;
+  border-right: #ffffff00;
+  background: #2f2a9200;
+  color: #2D355F;
+  font-size: 16px;
   font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
-}
-
-.heading p {
-  color: #828282;
-}
-
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 10px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #e6e6e6;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  font-family: inherit;
-}
-
-.form-group label {
+  cursor: pointer;
   text-align: left;
-  display: block;
-  margin: 0 0 5px 3px;
+  appearance: button;
+}
+
+.dash-menu-item:hover {
+    transform: scale(0.98);
+  }
+
+.dash-heading {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
 }
 
 .btn {

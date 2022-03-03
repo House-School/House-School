@@ -9,92 +9,51 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
-  color: #6C63FF;
-}
-
-a {
-  text-decoration: none;
-  color: #302A92;
-}
-
-.logout-a {
   color: #ffffff;
 }
 
-p {
-  line-height: 1.7;
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  line-height: 2.2;
-}
-
-h1,
-h2,
-h3 {
+.reg-h1 {
   font-weight: 600;
   margin-bottom: 10px;
 }
 
+.reg-h3 {
+  font-size: medium;
+  font-weight: 10;
+  text-align: center;
+  padding-top: 10px;
+}
+
 .container {
-  width: 100%;
-  max-width: 960px;
+  background-color: rgba(108,99,255,0.33);
+  width: 100vw;
+  height: 100vh;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0px 50px 50px;
   text-align: center;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #2D355F;
+.regbg {
+  margin: auto;
+  background-color: #6C63FF;
+  height: 500px;
+  width: 1000px;
+  border-radius: 50px;
 }
 
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header ul li {
-  margin-left: 20px;
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.header ul li a:hover {
-  color: #6C63FF;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
-.heading {
+.reg-heading {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
+  padding: 30px 245px 5px 0;
+  margin-bottom: 10px;
 }
 
-.heading p {
-  color: #828282;
-}
-
-.form,
+.reg-form,
 .content {
-  width: 70%;
-  margin: 0 auto;
+  width: 90%;
+  margin: auto;
+  padding: 0px 200px;
 }
 
 .form-group {
@@ -118,7 +77,24 @@ h3 {
   margin: 0 0 5px 3px;
 }
 
-.btn {
+.signin {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: auto;
+    padding: 0;
+  }
+
+.signin a {
+    color: #ffffff;
+    text-decoration: underline;
+    padding-left: 5px;
+  }
+  
+.signin a:hover {
+color: #302a92;
+}
+
+.reg-btn {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
@@ -143,12 +119,12 @@ h3 {
   color: #000;
 }
 
-.btn-block {
+.reg-btn-block {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.btn:hover {
+.reg-btn:hover {
   transform: scale(0.98);
 }
 

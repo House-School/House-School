@@ -6,95 +6,49 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  color: #6C63FF;
-}
-
-a {
-  text-decoration: none;
-  color: #302A92;
-}
-
-.logout-a {
-  color: #ffffff;
-}
-
-p {
-  line-height: 1.7;
-}
-
-ul {
-  list-style: none;
-}
-
-li {
-  line-height: 2.2;
-}
-
-h1,
-h2,
-h3 {
+.login-h1 {
   font-weight: 600;
   margin-bottom: 10px;
 }
 
+.login-h3 {
+  font-size: medium;
+  font-weight: 10;
+  text-align: center;
+  padding-top: 10px;
+}
+
 .container {
-  width: 100%;
-  max-width: 960px;
+  background-color: rgba(108,99,255,0.33);
+  width: 100vw;
+  height: 100vh;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0px 50px 50px;
   text-align: center;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  margin-bottom: 30px;
-  border-bottom: 1px solid #2D355F;
+.loginbg {
+  margin: auto;
+  background: linear-gradient(90deg, #ffffff 50%, #6C63FF 50%);
+  height: 500px;
+  width: 1000px;
+  border-radius: 50px;
 }
 
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header ul li {
-  margin-left: 20px;
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.header ul li a:hover {
-  color: #6C63FF;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
-.heading {
+.login-heading {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 90px 0px 0px 300px;
 }
 
-.heading p {
-  color: #828282;
-}
-
-.form,
+.login-form,
 .content {
-  width: 70%;
-  margin: 0 auto;
+  width: 90%;
+  margin: auto;
+  padding: 0px 0px 0px 500px;
 }
 
 .form-group {
@@ -118,7 +72,26 @@ h3 {
   margin: 0 0 5px 3px;
 }
 
-.btn {
+.signup {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 550px;
+  margin-right: 50px;
+  border-top: 1px solid #fff;
+  padding: 0;
+}
+
+.signup a {
+  color: #ffffff;
+  text-decoration: underline;
+  padding-left: 5px;
+}
+
+.signup a:hover {
+  color: #302a92 !important;
+}
+
+.login-btn {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
@@ -138,17 +111,17 @@ h3 {
   margin-right: 8px;
 }
 
-.btn-reverse {
+.login-btn-reverse {
   background: #fff;
   color: #000;
 }
 
-.btn-block {
+.login-btn-block {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.btn:hover {
+.login-btn:hover {
   transform: scale(0.98);
 }
 

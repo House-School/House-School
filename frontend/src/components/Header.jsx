@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser, FaLaptopHouse } from 'react-icons/fa'
+import { FaSignOutAlt, FaLaptopHouse } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
@@ -11,7 +11,7 @@ function Header() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/login')
   }
 
   return (
@@ -26,20 +26,7 @@ function Header() {
               <FaSignOutAlt /> Logout
             </button>
           </li>
-        ) : (
-          <>
-            <li>
-              <Link to='/login'>
-                <FaSignInAlt /> Login
-              </Link>
-            </li>
-            <li>
-              <Link to='/register'>
-                <FaUser /> Register
-              </Link>
-            </li>
-          </>
-        )}
+        ) : ( null )}
       </ul>
     </header>
   )

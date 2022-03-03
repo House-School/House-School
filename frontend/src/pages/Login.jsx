@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import "./loginStyles.css"
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -57,15 +58,16 @@ function Login() {
 
   return (
     <>
-      <section className='heading'>
-        <h1>
+    <div className="loginbg">
+      <section className="login-heading">
+        <h1 className='login-h1'>
           <FaSignInAlt /> Login
         </h1>
       </section>
 
-      <section className='form'>
+      <section className='login-form'>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
+          <div className='form-group' background-color="#000">
             <input
               type='email'
               className='form-control'
@@ -89,12 +91,23 @@ function Login() {
           </div>
 
           <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
+            <button type='submit' className='login-btn login-btn-block'>
+              Sign in
             </button>
           </div>
         </form>
       </section>
+      <section className='signup'>
+        <h3 className='login-h3'>
+          Don't have an account? 
+          <a>
+            <Link to='/register'>
+                Sign up here.
+            </Link>
+          </a>   
+        </h3>
+      </section>
+    </div>         
     </>
   )
 }
