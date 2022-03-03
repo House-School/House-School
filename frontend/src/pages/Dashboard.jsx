@@ -29,7 +29,7 @@ function Dashboard() {
       </div>
       <div className='dashbg'>
         <section className='dash-heading'>
-          <h1 className='dash-h1'>Welcome, firstname!</h1>
+          <h1 className='dash-h1'>Welcome, {user && user.name}!</h1>
         </section>
       </div> 
     </div>
