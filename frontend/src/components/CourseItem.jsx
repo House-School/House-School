@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteCourse } from '../features/courses/courseSlice'
 import { useNavigate } from 'react-router-dom'
+import '../pages/coursesStyles.css'
 
 function CourseItem({ course }) {
   const dispatch = useDispatch()
@@ -13,13 +14,10 @@ function CourseItem({ course }) {
   }
 
   return (
-    <div className='course'>
-      <div>{new Date(course.createdAt).toLocaleString('en-US')}</div>
-      <button onClick={onClick}>{course.text}</button>
-      <button onClick={() => dispatch(deleteCourse(course._id))} className='close'>
-        X
-      </button>
-    </div>
+    <button className='course-btn' onClick={onClick}>
+      {course.text}
+      {/* <a href="#" className="modal-close">&times;</a> */}
+    </button>
   )
 }
 

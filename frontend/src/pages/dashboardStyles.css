@@ -24,48 +24,6 @@
     border-radius: 30px;
 }
 
-.dash-menu {
-    margin-top: 60px;
-    margin-right: 10px;
-    background-color: #505da500;
-    border-radius: 20px;
-    height: 420px;
-    width: 160px;
-}
-
-.dash-menu-selected {
-    margin-left: 10px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    border-style: hidden;
-    height: 60px;
-    width: 200px;
-    color: #2D355F;
-    font-size: 16px;
-    font-weight: 700;
-    pointer-events: none;
-}
-
-.dash-menu-item {
-  padding: 20px 10px;
-  width: 150px;
-  border-bottom: 1px solid #2D355F;
-  border-top: #ffffff00;
-  border-left: #ffffff00;
-  border-right: #ffffff00;
-  background: #2f2a9200;
-  color: #2D355F;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: left;
-  appearance: button;
-}
-
-.dash-menu-item:hover {
-    transform: scale(0.98);
-  }
-
 .dash-heading {
   font-size: 30px;
   font-weight: 700;

@@ -29,7 +29,7 @@ const setCourse = asyncHandler(async (req, res) => {
     res.status(200).json(course)
   })
 
-  // @desc    Update course
+// @desc    Update course
 // @route   PUT /api/courses/:id
 // @access  Private
 const updateCourse = asyncHandler(async (req, res) => {
@@ -59,7 +59,7 @@ const updateCourse = asyncHandler(async (req, res) => {
     res.status(200).json(updatedCourse)
   })
 
-  // @desc    Delete course
+// @desc    Delete course
 // @route   DELETE /api/courses/:id
 // @access  Private
 const deleteCourse = asyncHandler(async (req, res) => {
