@@ -12,19 +12,13 @@
   margin-bottom: 0px;
 }
 
-.course-a {
-    color:#302a92;
-    font-weight: 600;
-    font-size: x-large;
-}
-
 .flex-container {
     display: flex;
     overflow: hidden;
 }
 
 .flex-container-courses {
-    height: 450px;
+    height: 445px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -35,9 +29,11 @@
     align-content: flex-start;
 }
 
+/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
+https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
 .flex-container-courses-fadetop {
     content:'';
-    margin-top: -450px;
+    margin-top: -455px;
     height: 20px;
     background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
     position: relative;
@@ -45,7 +41,7 @@
 
 .flex-container-courses-fadebottom {
     content:'';
-    margin-top: 410px;
+    margin-top: 415px;
     height: 20px;
     background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
     position: relative;
@@ -66,7 +62,8 @@
   padding-left: 30px;
   padding-top: 10px;
 }
-  
+
+/* Modal element based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */
 .modal {
   visibility: hidden;
   opacity: 0;
@@ -108,7 +105,7 @@
 
 .createcourse-btn {
     height: 130px;
-    width: 190px;
+    width: 180px;
     padding: 10px 20px;
     margin: 5px;
     border: 3px solid #302a92;
@@ -128,29 +125,52 @@
     transform: scale(0.98);
 }
 
+.createcourse-a {
+    color:#302a92;
+    font-weight: 600;
+    font-size: x-large;
+}
+
 .course-btn {
     height: 130px;
-    width: 190px;
-    padding: 10px 10px;
+    width: 180px;
     margin: 5px;
-    border: 3px solid #302a92;
+    border: 1px solid #302a92;
     border-radius: 10px;
-    background: #a39ff0;
-    color: #302a92;
+    background: linear-gradient(0deg, #ffffff 35%, #384694 35%);
+    color: #384694;
     font-size: 18px;
     font-weight: 700;
-    cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
     text-align: left;
-    padding-bottom: 100px;
-    padding-right: 30px;
 }
 
-.course-btn:hover {
-    transform: scale(0.98);
+.course-a {
+    padding: 10px 10px 0;
+    color:#302a92;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 135px;
+    cursor: pointer;
+}
+
+.course-a:hover {
+    text-decoration: underline;
+}
+
+.deletecourse{
+  padding-left: 155px;
+  border: 0px;
+  border-radius: 5px;
+  background: #ffffff00;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  appearance: button;
+  display: flex;
 }
 
 .btn {

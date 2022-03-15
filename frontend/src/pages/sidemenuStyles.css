@@ -55,3 +55,7 @@
 .side-menu-item:hover {
     transform: scale(0.98);
 }
+
+.side-menu-item-above:hover {
+  transform: scale(0.98);
+}

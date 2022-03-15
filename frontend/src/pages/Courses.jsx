@@ -66,6 +66,9 @@ function Courses() {
                 ))}
                 <a className='createcourse-btn' href="#addcourse-modal">+ Create new course</a>
               </div>
+
+              {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
+               https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/}
               <div className='flex-container-courses-fadetop'></div>
               <div className='flex-container-courses-fadebottom'></div>
             </>
@@ -76,9 +79,10 @@ function Courses() {
           )}
         </section>
 
+        {/* Based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */}
         <div id="addcourse-modal" className="modal">
           <div className="modal-content">
-              <a className='course-a'>Create new course</a>
+              <a className='createcourse-a'>Create new course</a>
               <CourseForm />
               <a href="#" className="modal-close">&times;</a>
           </div>
