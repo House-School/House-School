@@ -1,20 +1,20 @@
-// to-do list
-// based on task.js from https://github.com/sk-Jahangeer/todo-mern-app/blob/master/server/models/task.js
-
 const mongoose = require('mongoose')
 
 const taskSchema = mongoose.Schema(
-    {
-        task: {
-            type: String,
-            required: true
-        },
-        completed: {
-            type: Boolean,
-            default: false
-        }
-    }
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+    text: {
+      type: String,
+      required: [true, 'Please add a text value'],
+    },
+  },
+  {
+    timestamps: true,
+  }
 )
 
-module.exports = mongoose.model("task", taskSchema);
-
+module.exports = mongoose.model('Task', taskSchema)
