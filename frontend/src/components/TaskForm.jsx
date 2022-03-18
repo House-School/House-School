@@ -22,7 +22,7 @@ function TaskForm() {
                 <div className="form-group">
                     <label htmlFor="text">Task</label>
                     <input 
-                        type="text" 
+                        type="tasks-text" 
                         name="text" 
                         id="text" 
                         value={text} 

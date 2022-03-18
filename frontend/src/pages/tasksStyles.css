@@ -77,7 +77,7 @@ input[type=checkbox] {
   margin-right: 20px;
 }
 
-input[type=text] {
+input[type=tasks-text] {
   margin: 0;
   border: 1px solid #000;
   border-radius: 5px;
