@@ -41,12 +41,16 @@ function Courses() {
     navigate('/')
   }
 
+  const onTasks = () => {
+    navigate('/tasks')
+  }
+
   return (
     <>
     <div className='flex-container'>
       <div className='side-menu'>
           <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
-          <button className='side-menu-item-above'>Tasks</button>
+          <button className='side-menu-item-above' onClick={onTasks}>Tasks</button>
           <button className='side-menu-selected'>Courses</button>
           <button className='side-menu-item'>Calendar</button>
           <button className='side-menu-item'>Grades</button>
@@ -58,6 +62,7 @@ function Courses() {
         <section className='course-heading'>
           <h1 className='course-h1'>Courses</h1>
         </section>
+        
         <section>
           {courses.length > 0 ? (
             <><div className='flex-container-courses'>

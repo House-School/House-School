@@ -17,11 +17,12 @@
 }
 
 .dashbg {
-    margin: 0 0 0 20px;
+    margin: 0 10px 0 20px;
     background-color: #ffffff;
     height: 550px;
     width: 1100px;
     border-radius: 30px;
+    overflow: auto;
 }
 
 .dash-heading {
