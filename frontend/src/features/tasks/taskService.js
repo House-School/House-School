@@ -1,21 +1,50 @@
-// to-do list
-// based on taskServices.js from https://github.com/sk-Jahangeer/todo-mern-app/blob/master/client/src/services/taskServices.js
+import axios from "axios"
 
-import axios from "axios";
-const apiUrl = '/api/tasks/';
+const API_URL = '/api/tasks/'
 
-export function getTasks() {
-    return axios.get(apiUrl);
+// Create new task
+const createTask = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+
+    const response = await axios.post(API_URL, taskData, config)
+
+    return response.data
 }
 
-export function addTask(task) {
-    return axios.post(apiUrl, task);
+// Get user tasks
+const getTasks = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+
+    const response = await axios.get(API_URL, config)
+
+    return response.data
 }
 
-export function updateTask(id, task) {
-    return axios.put(apiUrl + "/" + id, task);
+// Delete user task
+const deleteTask = async (taskId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.delete(API_URL + taskId, config)
+
+    return response.data
 }
 
-export function deleteTask(id) {
-    return axios.delete(apiUrl + "/" + id);
+const taskService = {
+    createTask,
+    getTasks,
+    deleteTask,
 }
+
+export default taskService

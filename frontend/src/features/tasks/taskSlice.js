@@ -1,74 +1,120 @@
-// to-do list
-// based on Tasks.js from https://github.com/sk-Jahangeer/todo-mern-app/blob/master/client/src/Tasks.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import taskService from './taskService'
 
-import { Component } from "react";
-import {
-    addTask,
-    getTasks,
-    updateTask,
-    deleteTask,
-} from "./tasks/taskService"; //
+const initialState = {
+    tasks: [],
+    isError: false,
+    isSuccess: false,
+    isLoading: false,
+    message: '',
+}
 
-class Tasks extends Component {
-    state = { tasks: [], currentTask: "" };
-
-    async componentDidMount() {
-        try {
-            const { data } = await getTasks();
-            this.setState({ tasks: data });
-        } catch (error) {
-            console.log(error);
+// Create new task
+export const createTask = createAsyncThunk(
+    'tasks/create', 
+    async (taskData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.createTask(taskData, token)
+    } catch (error) {
+        const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
         }
     }
+)
 
-    handleChange = ({ currentTarget: input }) => {
-        this.setState({ currentTask: input.value });
-    };
-
-    handleSubmit = async (e) => {
-        e.preventDefault();
-        const originalTasks = this.state.tasks;
-        try {
-            const { data } = await addTask({ task: this.state.currentTask });
-            const tasks = originalTasks;
-            tasks.push(data);
-            this.setState({ tasks, currentTask: "" });
-        } catch (error) {
-            console.log(error);
+// Get user tasks
+export const getTasks = createAsyncThunk(
+    'tasks/getAll', 
+    async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.getTasks(token)
+    } catch (error) {
+        const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
         }
-    };
+    }
+)
 
-    handleUpdate = async (currentTask) => {
-        const originalTasks = this.state.tasks;
-        try {
-            const tasks = [...originalTasks];
-            const index = tasks.findIndex((task) => task._id === currentTask);
-            tasks[index] = { ...tasks[index] };
-            tasks[index].completed = !tasks[index].completed;
-            this.setState({ tasks });
-            await updateTask(currentTask, {
-                completed: tasks[index].completed,
-            });
-        } catch (error) {
-            this.setState({ tasks: originalTasks });
-            console.log(error);
+// Delete user task
+export const deleteTask = createAsyncThunk(
+    'tasks/delete', 
+    async (id, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.deleteTask(id, token)
+    } catch (error) {
+        const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
         }
-    };
+    }
+)
 
-    handleDelete = async (currentTask) => {
-        const originalTasks = this.state.tasks;
-        try {
-            const tasks = originalTasks.filter(
-                (task) => task._id !== currentTask
-            );
-            this.setState({ tasks });
-            await deleteTask(currentTask);
-        } catch (error) {
-            this.setState({ tasks: originalTasks });
-            console.log(error);
-        }
-    };
-}
+export const taskSlice = createSlice({
+    name: 'task',
+    initialState,
+    reducers: {
+        reset: (state) => initialState
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(createTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(createTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks.push(action.payload)
+            })   
+            .addCase(createTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            }) 
+            .addCase(getTasks.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getTasks.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })   
+            .addCase(getTasks.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })  
+            .addCase(deleteTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(deleteTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = state.tasks.filter((task) => task._id !== action.payload.id)
+            })   
+            .addCase(deleteTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })  
+    }
+})
 
 export const { reset } = taskSlice.actions
 export default taskSlice.reducer
