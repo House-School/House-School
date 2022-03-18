@@ -12,4 +12,4 @@
 
 ### [CSS faded section of scrolling div](https://jsfiddle.net/hP3wu/12/)
 - Original code posted to this [question](https://stackoverflow.com/q/17044284) and [answer](https://stackoverflow.com/a/17044731) from stackoverflow.com where user contributions are licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with attribution required.
-- Source code used as reference for the scrolling div element in the courses feature of the software
+- Source code used as reference for the scrolling div element in the courses and tasks feature of the software
