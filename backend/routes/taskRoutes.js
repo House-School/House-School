@@ -1,47 +1,15 @@
-// to-do list
-// based on tasks.js from https://github.com/sk-Jahangeer/todo-mern-app/blob/master/server/routes/tasks.js
+const express = require('express')
+const router = express.Router()
+const {
+  getTasks,
+  setTask,
+  updateTask,
+  deleteTask,
+} = require('../controllers/taskController')
 
-const Task = require("../models/taskModel");
-const express = require("express");
-const router = express.Router();
+const { protect } = require('../middleware/authMiddleware')
 
-router.post("/", async (req, res) => {
-    try {
-        const task = await new Task(req.body).save();
-        res.send(task);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.route('/').get(protect, getTasks).post(protect, setTask)
+router.route('/:id').delete(protect, deleteTask).put(protect, updateTask)
 
-router.get("/", async (req, res) => {
-    try {
-        const tasks = await Task.find();
-        res.send(tasks);
-    } catch (error) {
-        res.send(error);
-    }
-});
-
-router.put("/:id", async (req, res) => {
-    try {
-        const task = await Task.findOneAndUpdate(
-            { _id: req.params.id },
-            req.body
-        );
-        res.send(task);
-    } catch (error) {
-        res.send(error);
-    }
-});
-
-router.delete("/:id", async (req, res) => {
-    try {
-        const task = await Task.findByIdAndDelete(req.params.id);
-        res.send(task);
-    } catch (error) {
-        res.send(error);
-    }
-});
-
-module.exports = router;
+module.exports = router
