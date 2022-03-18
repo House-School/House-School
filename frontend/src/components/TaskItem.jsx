@@ -7,7 +7,7 @@ function TaskItem({ task }) {
 const dispatch = useDispatch()
 
     return (
-        <li>
+        <li className='task-li'>
             <input class="form-check-input" type="checkbox" value=""></input>
             <span class="form-checked-content">
                 <label class="task-h1">{task.text}</label>                    

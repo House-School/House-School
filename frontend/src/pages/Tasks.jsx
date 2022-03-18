@@ -50,7 +50,7 @@ function Tasks() {
     <>
     <div className='flex-container'>
       <div className='side-menu'>
-          <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
+          <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-selected'>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
           <button className='side-menu-item'>Calendar</button>
@@ -58,20 +58,24 @@ function Tasks() {
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
-      <div className='dashbg'>
-        <section className='dash-heading'>
-          <h1 className='dash-h1'>Tasks</h1>
+      <div className='taskbg'>
+        <section className='task-heading'>
+          <h1 className='task-h1'>Tasks</h1>
         </section>
         
         <TaskForm />
 
         <section>
             {tasks.length > 0 ? (
-                <div className="task">
+              <>
+                <div className="flex-container-tasks">
                     {tasks.map((task) => (
                         <TaskItem key={task._id} task={task} />
                     ))}
                 </div>
+                <div className='flex-container-tasks-fadetop'></div>
+                <div className='flex-container-tasks-fadebottom'></div>
+              </>
             ) : (<h3 className="dash-h1">You have not set any tasks</h3>)}
         </section>
 
