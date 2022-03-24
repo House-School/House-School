@@ -42,8 +42,8 @@ function Tasks() {
     navigate('/courses')
   }
 
-  if(isLoading) {
-      return <Spinner />
+  const onGrades = () => {
+    navigate('/grades')
   }
 
   return (
@@ -54,7 +54,7 @@ function Tasks() {
           <button className='side-menu-selected'>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
           <button className='side-menu-item'>Calendar</button>
-          <button className='side-menu-item'>Grades</button>
+          <button className='side-menu-item'onClick={onGrades}>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
