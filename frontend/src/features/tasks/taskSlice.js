@@ -23,7 +23,7 @@ export const createTask = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString()
-      return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(message)
         }
     }
 )
@@ -42,7 +42,7 @@ export const getTasks = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString()
-      return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(message)
         }
     }
 )
@@ -61,7 +61,26 @@ export const deleteTask = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString()
-      return thunkAPI.rejectWithValue(message)
+        return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+// Update user task
+export const updateTask = createAsyncThunk(
+    'tasks/update',
+    async ({id, taskData}, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await taskService.updateTask(id, taskData, token)
+        } catch (error) {
+            const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+            return thunkAPI.rejectWithValue(message)
         }
     }
 )
@@ -87,6 +106,7 @@ export const taskSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             }) 
+
             .addCase(getTasks.pending, (state) => {
                 state.isLoading = true
             })
@@ -99,7 +119,8 @@ export const taskSlice = createSlice({
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-            })  
+            }) 
+
             .addCase(deleteTask.pending, (state) => {
                 state.isLoading = true
             })
@@ -112,7 +133,27 @@ export const taskSlice = createSlice({
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-            })  
+            })
+
+            .addCase(updateTask.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(updateTask.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.tasks = state.tasks.map((task) => task._id !== action.payload.id
+                    ? {
+                        ...task,
+                        text: action.payload.text
+                    }
+                    :  task
+                )
+            })
+            .addCase(updateTask.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
     }
 })
 

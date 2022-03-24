@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskForm from '../components/TaskForm'
 import TaskItem from '../components/TaskItem'
-import './dashboardStyles.css'
 import './sidemenuStyles.css'
 import './tasksStyles.css'
 import Spinner from '../components/Spinner'
@@ -73,16 +72,16 @@ function Tasks() {
                         <TaskItem key={task._id} task={task} />
                     ))}
                 </div>
+                
+                {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
+               https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/}
                 <div className='flex-container-tasks-fadetop'></div>
                 <div className='flex-container-tasks-fadebottom'></div>
               </>
-            ) : (<h3 className="dash-h1">You have not set any tasks</h3>)}
+            ) : (<h3 className="task-h1">You have not set any tasks</h3>)}
         </section>
-
-      </div> 
-      
-    </div>
-    
+      </div>       
+    </div>    
     </>
   )
 }

@@ -17,7 +17,6 @@ function CourseItem({ course }) {
     <button className='course-btn'>
       <button className='deletecourse' onClick={() => dispatch(deleteCourse(course._id))}>&times;</button>
       <a className='course-a' onClick={onClick}>{course.text}</a>
-      {/* <a href="#" className="modal-close">&times;</a> */}
     </button>
   )
 }

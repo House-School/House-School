@@ -1,17 +1,23 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { createCourse } from '../features/courses/courseSlice'
 
 function CourseForm() {
   const [text, setText] = useState('')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onSubmit = (e) => {
     e.preventDefault()
 
     dispatch(createCourse({ text }))
     setText('')
+  }
+
+  const onAddCourse = () => {
+    navigate('/courses')
   }
 
   return (
@@ -28,7 +34,7 @@ function CourseForm() {
           />
         </div>
         <div className='form-group'>
-          <button className='btn btn-block' type='submit'>
+          <button className='btn btn-block' type='submit' onClick={onAddCourse}>
             Add Course
           </button>
         </div>

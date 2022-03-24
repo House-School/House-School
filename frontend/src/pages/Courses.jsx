@@ -57,7 +57,7 @@ function Courses() {
           <button className='side-menu-item-above' onClick={onTasks}>Tasks</button>
           <button className='side-menu-selected'>Courses</button>
           <button className='side-menu-item'>Calendar</button>
-          <button className='side-menu-item'onClick={onGrades}>Grades</button>
+          <button className='side-menu-item' onClick={onGrades}>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
@@ -89,11 +89,11 @@ function Courses() {
         </section>
 
         {/* Based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */}
-        <div id="addcourse-modal" className="modal">
-          <div className="modal-content">
+        <div id="addcourse-modal" className="course-modal">
+          <div className="course-modal-content">
               <a className='createcourse-a'>Create new course</a>
               <CourseForm />
-              <a href="#" className="modal-close">&times;</a>
+              <a href="" className="course-modal-close">&times;</a>
           </div>
         </div>
       </div>
