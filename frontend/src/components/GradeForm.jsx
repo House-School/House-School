@@ -11,16 +11,17 @@ function GradeForm() {
       requirement: '',
       percentageTotal: '',
       percentageScore: '',
+      total: '',
     }
     const [FormData, setFormData] = useState(initFormData)
 
-    const { course, requirement, percentageTotal, percentageScore } = FormData
+    const { course, requirement, percentageTotal, percentageScore, total } = FormData
 
     const dispatch = useDispatch()
 
     const onSubmit = (e) => {
       e.preventDefault()
-      dispatch(createGrade( { course, requirement, percentageTotal, percentageScore } ))
+      dispatch(createGrade( { course, requirement, percentageTotal, percentageScore, total } ))
     }
 
     return (
@@ -76,7 +77,20 @@ function GradeForm() {
                 percentageScore: e.target.value,
               })}
             />
-         </div>
+          </div>
+          <div className='form-group'>
+            <input
+              type='number'
+              className='form-control'
+              id='total'
+              name='total'
+              value={total}
+              onChange={(e) => setFormData({
+                ...FormData,
+                total: e.target.value,
+              })}
+            />
+          </div>
          <button type='submit' className='reg-btn reg-btn-block'>
               Submit
         </button>

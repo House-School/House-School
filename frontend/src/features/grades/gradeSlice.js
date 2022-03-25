@@ -34,7 +34,6 @@ export const getGrades = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token
       return await gradeService.getGrades(token)
     } catch (error) {
-      console.log("error cannot get")
       const message =
         (error.response &&
           error.response.data &&
@@ -61,6 +60,25 @@ export const deleteGrade = createAsyncThunk(
         error.toString()
       return thunkAPI.rejectWithValue(message)
     }
+  }
+)
+
+// Update user grade
+export const updateGrade = createAsyncThunk(
+  'grades/update',
+  async ({id, gradeData}, thunkAPI) => {
+      try {
+          const token = thunkAPI.getState().auth.user.token
+          return await gradeService.updateGrade(id, gradeData, token)
+      } catch (error) {
+          const message =
+          (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+          error.message ||
+          error.toString()
+          return thunkAPI.rejectWithValue(message)
+      }
   }
 )
 
@@ -112,6 +130,25 @@ export const gradeSlice = createSlice({
         state.isLoading = false
         state.isError = true
         state.message = action.payload
+      })
+      .addCase(updateGrade.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateGrade.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.isSuccess = true;
+          state.grades = state.grades.map((grade) => grade._id !== action.payload.id
+              ? {
+                  ...grade,
+                  text: action.payload.text
+              }
+              :  grade
+          )
+      })
+      .addCase(updateGrade.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isError = true;
+          state.message = action.payload;
       })
   },
 })

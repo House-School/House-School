@@ -30,13 +30,14 @@ const setGrade = asyncHandler(async (req, res) => {
       throw new Error('User not found')
     }
 
-    const { course, requirement, percentageTotal, percentageScore } = req.body
+    const { course, requirement, percentageTotal, percentageScore, total } = req.body
   
     const grade = await Grade.create({
       course,
       requirement,
       percentageTotal,
       percentageScore,
+      total,
       user: req.user.id,
     })
 
@@ -53,6 +54,11 @@ const updateGrade = asyncHandler(async (req, res) => {
       res.status(400)
       throw new Error('Grade not found')
     }
+
+    if (!req.body) {
+      res.status(400)
+      throw new Error(req.body)
+    }
   
     // Check for user
     if (!req.user) {
@@ -65,6 +71,7 @@ const updateGrade = asyncHandler(async (req, res) => {
       res.status(401)
       throw new Error('User not authorized')
     }
+
   
     const updatedGrade = await Grade.findByIdAndUpdate(req.params.id, req.body, {
       new: true,

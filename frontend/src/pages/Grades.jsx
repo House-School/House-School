@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import GradeForm from '../components/GradeForm'
 import GradeItem from '../components/GradeItem'
+import GradeItemEdit from '../components/GradeItemEdit'
 import './dashboardStyles.css'
 import './sidemenuStyles.css'
 import './gradesStyles.css'
-import Spinner from '../components/Spinner'
 import {getGrades, reset} from '../features/grades/gradeSlice'
 
 function Grades() {
@@ -14,7 +14,7 @@ function Grades() {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { grades, isLoading, isError, message } = useSelector(
+  const { grades, isError, message } = useSelector(
       (state) => state.grades
       )
 
@@ -65,7 +65,9 @@ function Grades() {
           <h1 className='grade-h1'>Grades</h1>
         </section>
 
-        <GradeForm />
+        <GradeForm />       
+
+        <a href="#editgrade-modal"> Edit Grade</a>
 
         <section>
             <>
@@ -76,6 +78,20 @@ function Grades() {
             </div>
             <div className='flex-container-grades-fadetop'></div>
             <div className='flex-container-grades-fadebottom'></div>
+            </>
+        </section>
+
+        <section>
+            <>
+            <div id="editgrade-modal" className="grade-modal">
+              <div className="grade-modal-content">
+                  <a className='creategrade-a'>Edit Grade</a>
+                  {grades.map((grade) => (
+                    <GradeItemEdit key={grade._id} grade={grade} />
+                ))}
+                  <a href="" className="grade-modal-close">Cancel Edit</a>
+              </div>
+            </div>
             </>
         </section>
 

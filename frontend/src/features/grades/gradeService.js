@@ -20,7 +20,6 @@ const getGrades = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   }
-  console.log("cannot get grades -service")
   const response = await axios.get(API_URL, config)
 
   return response.data
@@ -38,10 +37,23 @@ const deleteGrade = async (gradeId, token) => {
   return response.data
 }
 
+const updateGrade = async (gradeId, gradeData, token) => {
+  const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
+
+  const response = await axios.put(API_URL + "/" + gradeId, gradeData, config)
+
+  return response.data
+}
+
 const gradeService = { 
   createGrade,
   getGrades,
   deleteGrade,
+  updateGrade,
 }
 
 export default gradeService

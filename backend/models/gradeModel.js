@@ -23,6 +23,10 @@ const gradeSchema = mongoose.Schema(
             type: Number,
             required: true
         },
+        total: {
+            type: Number,
+            required: true
+        },
     },
     {
         timestamps: true,

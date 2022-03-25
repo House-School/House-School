@@ -1,141 +1,141 @@
 
 .form-check-input:checked + .form-checked-content {
-    opacity: .5;
-    text-decoration: line-through;
-    text-decoration-color:#302a92;
-  }
+  opacity: .5;
+  text-decoration: line-through;
+  text-decoration-color:#302a92;
+}
+
+.gradebg {
+  margin: 0 0 0 20px;
+  background-color: #ffffff;
+  height: 550px;
+  width: 1100px;
+  border-radius: 30px;
+}
   
-  .gradebg {
-    margin: 0 0 0 20px;
-    background-color: #ffffff;
-    height: 550px;
-    width: 1100px;
-    border-radius: 30px;
-  }
-    
-  /* Remove margins and padding from the list */
-  .grade {
-    margin-left: 160px;
-    margin-right: 160px;
-  }
-  
-  .grade-heading {
-    font-size: 30px;
-    font-weight: 700;
-    text-align: left;
-    padding-left: 30px;
-    padding-top: 10px;
-  }
-  
-  /* Style the list items */
-  .grade-li {
-    position: relative;
-    padding: 12px 60px 12px 40px;
-    list-style-type: none;
-    background: #eee;
-    font-size: 18px;
-    transition: 0.2s;
-    overflow-wrap: break-word;
-    border-bottom:solid #9490ddd3;
-    text-align: left;
-    line-height: 35px;
-  
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-  
-  /* Darker background-color on hover */
-  .grade-li:hover {
-    background: #ddd;
-  }
-  
-  /* Style the close button */
-  .delete_grade {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border: none;
-    background-color: #f4433600;
-    padding: 12px 16px 12px 16px;
-    width: 60px;
-    cursor: pointer;
-  }
-  
-  .delete_grade:hover {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  input[type=checkbox] {
-    cursor: pointer;
-    transform: scale(2);
-    margin-right: 20px;
-  }
-  
-  input[type=grades-text] {
-    margin: 0;
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 75%;
-    float: left;
-    font-size: 16px;
-  }
-  
-  .grade-h1 {
-    color:#302a92;
-    font-weight: 600;
-    margin-bottom: 0px;
-  }
-  
-  .addgrade_btn {
-    padding: 0px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    background: #302a92;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    width: 24%;
-    height: 45px;
-    margin-left: 1%;
-  }
-  
-  .addgrade_btn:hover {
-    transform: scale(0.98);
-  }
-  
-  .flex-container-grades {
-    height: 365px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    padding: 20px 30px;
-    overflow: auto;
-    position: relative;
-    justify-content: flex-start;
-  }
-  
-  /* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
-  https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
-  .flex-container-grades-fadetop {
-    content:'';
-    margin-top: -365px;
-    height: 20px;
-    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
-    position: relative;
-  }
-  
-  .flex-container-grades-fadebottom {
-    content:'';
-    margin-top: 325px;
-    height: 20px;
-    background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
-    position: relative;
-  }
+/* Remove margins and padding from the list */
+.grade {
+  margin-left: 160px;
+  margin-right: 160px;
+}
+
+.grade-heading {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: left;
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+/* Style the list items */
+.grade-li {
+  position: relative;
+  padding: 12px 60px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  overflow-wrap: break-word;
+  border-bottom:solid #9490ddd3;
+  text-align: left;
+  line-height: 35px;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+/* Darker background-color on hover */
+.grade-li:hover {
+  background: #ddd;
+}
+
+/* Style the close button */
+.delete_grade {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: none;
+  background-color: #f4433600;
+  padding: 12px 16px 12px 16px;
+  width: 60px;
+  cursor: pointer;
+}
+
+.delete_grade:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+  transform: scale(2);
+  margin-right: 20px;
+}
+
+input[type=grades-text] {
+  margin: 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 75%;
+  float: left;
+  font-size: 16px;
+}
+
+.grade-h1 {
+  color:#302a92;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.addgrade_btn {
+  padding: 0px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #302a92;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  width: 24%;
+  height: 45px;
+  margin-left: 1%;
+}
+
+.addgrade_btn:hover {
+  transform: scale(0.98);
+}
+
+.flex-container-grades {
+  height: 365px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 20px 30px;
+  overflow: auto;
+  position: relative;
+  justify-content: flex-start;
+}
+
+/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
+https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
+.flex-container-grades-fadetop {
+  content:'';
+  margin-top: -365px;
+  height: 20px;
+  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
+  position: relative;
+}
+
+.flex-container-grades-fadebottom {
+  content:'';
+  margin-top: 325px;
+  height: 20px;
+  background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
+  position: relative;
+}

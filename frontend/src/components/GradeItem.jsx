@@ -1,23 +1,18 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteGrade } from '../features/grades/gradeSlice'
-import { useNavigate } from 'react-router-dom'
 import '../pages/gradesStyles.css'
 
 function GradeItem({ grade }) {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const onClick = (e) => {
-    e.preventDefault()
-  }
 
   return (
     <button className='grade-btn'>
       <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>&times;</button>
-      <label className="task-h1">{grade.course}</label> 
-      <label className="task-h1">{grade.requirement}</label> 
-      <p>{grade.percentageTotal}</p> 
-      <p>{grade.percentageScore}</p> 
+      <label className="task-h1">Course:{grade.course} </label> 
+      <label className="task-h1">Requirement:{grade.requirement} </label> 
+      <p>Percentage Total:{grade.percentageTotal}</p> 
+      <p>Percentage Score:{grade.percentageScore}</p> 
+      <p>Total:{grade.Total}</p> 
     </button>
   )
 }
