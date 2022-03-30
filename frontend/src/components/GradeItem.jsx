@@ -10,9 +10,9 @@ function GradeItem({ grade }) {
       <label className="task-h1">Course: {grade.course} </label>
       <label className="task-h1"> - Name of Requirement: {grade.requirement} </label> 
       <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>Delete</button>
-      <p>Percentage Total:{grade.percentageTotal}</p> 
-      <p>Percentage Score:{grade.percentageScore}</p> 
+      <p>Score:{grade.score}</p> 
       <p>Total:{grade.total}</p> 
+      <p>Percentage Total:{grade.percentageTotal}</p> 
     </button>
   )
 }

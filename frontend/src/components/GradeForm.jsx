@@ -16,14 +16,14 @@ function GradeForm() {
     }
     const [FormData, setFormData] = useState(initFormData)
 
-    const { course, requirement, percentageTotal, percentageScore, total } = FormData
+    const { course, requirement, score , total, percentageTotal } = FormData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const onSubmit = (e) => {
       e.preventDefault()
-      dispatch(createGrade( { course, requirement, percentageTotal, percentageScore, total } ))
+      dispatch(createGrade( { course, requirement, score , total, percentageTotal } ))
     }
 
 
@@ -60,27 +60,14 @@ function GradeForm() {
             <input
               type='number'
               className='form-control'
-              id='percentageScore'
-              name='percentageScore'
-              value={percentageScore}
+              id='score'
+              name='score'
+              value={score}
               onChange={(e) => setFormData({
                 ...FormData,
                 percentageScore: e.target.value,
               })}
-              placeholder='Enter Score in Percentage'
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='number'
-              id='percentageTotal'
-              name='percentageTotal'
-              value={percentageTotal}
-              onChange={(e) => setFormData({
-                ...FormData,
-                percentageTotal: e.target.value,
-              })}
-              placeholder='Enter Percentage Total of Requirement'
+              placeholder='Enter Score Points'
             />
           </div>
           <div className='form-group'>
@@ -94,7 +81,20 @@ function GradeForm() {
                 ...FormData,
                 total: e.target.value,
               })}
-              placeholder='Enter Total'
+              placeholder='Enter Total Points'
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='number'
+              id='percentageTotal'
+              name='percentageTotal'
+              value={percentageTotal}
+              onChange={(e) => setFormData({
+                ...FormData,
+                percentageTotal: e.target.value,
+              })}
+              placeholder='Enter Percentage Total of Requirement'
             />
           </div>
          <button type='submit' className='addgrade_btn'>

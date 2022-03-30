@@ -15,15 +15,15 @@ const gradeSchema = mongoose.Schema(
             type: String,
             required: [true, 'Please add name of requirement'],
         },
-        percentageTotal: {
-            type: Number,
-            required: true
-        },
-        percentageScore: {
+        score: {
             type: Number,
             required: true
         },
         total: {
+            type: Number,
+            required: true
+        },
+        percentageTotal: {
             type: Number,
             required: true
         },

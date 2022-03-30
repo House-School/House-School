@@ -13,14 +13,14 @@ function GradeItem({ grade }) {
     total: '',
   }
   const [gradeData, setGradeData]  = useState(initFormData)
-  const { course, requirement, percentageTotal, percentageScore, total } = gradeData
+  const { course, requirement, score , total, percentageTotal } = gradeData
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const onSubmit = (e) => {
     e.preventDefault()
-    dispatch(updateGrade( {id: grade._id, gradeData: {course, requirement, percentageTotal, percentageScore, total}} ))
+    dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageTotal }} ))
     window.location.reload(false) /*{force reload window}*/
 }
 
@@ -36,9 +36,9 @@ function GradeItem({ grade }) {
       <section className='grade-form'>
             <label className="task-h1"> {grade.course} </label>
             <label className="task-h1">- {grade.requirement} </label> 
-            <label className="task-h1"> {grade.percentageScore}</label> 
-            <label className="task-h1"> /{grade.percentageTotal}</label> 
-            <label className="task-h1"> Total: {grade.total}</label> 
+            <label className="task-h1"> {grade.score}</label> 
+            <label className="task-h1"> /{grade.total}</label> 
+            <label className="task-h1"> - Percentage Total: {grade.percentageTotal}</label> 
 
           <form onSubmit={onSubmit}>
             <div className='form-group'>
@@ -65,21 +65,11 @@ function GradeItem({ grade }) {
               <input
                 type='gradesedit-number'
                 className='form-control'
-                id='percentageScore'
-                name='percentageScore'
-                value={percentageScore}
+                id='score'
+                name='score'
+                value={score}
                 onChange={onChange}
-                placeholder='Enter Score in Percentage'
-              />
-            </div>
-            <div className='form-group'>
-              <input
-                type='gradesedit-number'
-                id='percentageTotal'
-                name='percentageTotal'
-                value={percentageTotal}
-                onChange={onChange}
-                placeholder='Enter Percentage Total of Requirement'
+                placeholder='Enter Score in Points'
               />
             </div>
             <div className='form-group'>
@@ -90,7 +80,17 @@ function GradeItem({ grade }) {
                 name='total'
                 value={total}
                 onChange={onChange}
-                placeholder='Enter Total'
+                placeholder='Enter Total Points'
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                type='gradesedit-number'
+                id='percentageTotal'
+                name='percentageTotal'
+                value={percentageTotal}
+                onChange={onChange}
+                placeholder='Enter Percentage Total of Requirement'
               />
             </div>
 
