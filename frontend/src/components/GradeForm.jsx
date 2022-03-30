@@ -65,7 +65,7 @@ function GradeForm() {
               value={score}
               onChange={(e) => setFormData({
                 ...FormData,
-                percentageScore: e.target.value,
+                score: e.target.value,
               })}
               placeholder='Enter Score Points'
             />
