@@ -23,6 +23,10 @@ const gradeSchema = mongoose.Schema(
             type: Number,
             required: true
         },
+        percentageScore: {
+            type: Number,
+            required: true
+        },
         percentageTotal: {
             type: Number,
             required: true

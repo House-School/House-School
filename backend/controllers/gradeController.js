@@ -30,13 +30,14 @@ const setGrade = asyncHandler(async (req, res) => {
       throw new Error('User not found')
     }
 
-    const { course, requirement, total, score, percentageTotal } = req.body
+    const { course, requirement, total, score, percentageScore, percentageTotal } = req.body
   
     const grade = await Grade.create({
       course,
       requirement,
       score,
       total,
+      percentageScore,
       percentageTotal,
       user: req.user.id,
     })

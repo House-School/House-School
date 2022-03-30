@@ -5,22 +5,24 @@ import { updateGrade } from '../features/grades/gradeSlice'
 import '../pages/gradesStyles.css'
 
 function GradeItem({ grade }) {
-  const initFormData = {
+  var initFormData = {
     course: '',
     requirement: '',
-    percentageTotal: '',
-    percentageScore: '',
-    total: '',
+    score: 0,
+    total: 0,
+    percentageScore: 0,
+    percentageTotal: 0,
   }
   const [gradeData, setGradeData]  = useState(initFormData)
-  const { course, requirement, score , total, percentageTotal } = gradeData
+  var { course, requirement, score , total, percentageScore, percentageTotal } = gradeData
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const onSubmit = (e) => {
     e.preventDefault()
-    dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageTotal }} ))
+    percentageScore = (score/total) * percentageTotal 
+    dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageScore, percentageTotal }} ))
     window.location.reload(false) /*{force reload window}*/
 }
 
@@ -34,11 +36,9 @@ function GradeItem({ grade }) {
   return (
     <>
       <section className='grade-form'>
-            <label className="task-h1"> {grade.course} </label>
-            <label className="task-h1">- {grade.requirement} </label> 
-            <label className="task-h1"> {grade.score}</label> 
-            <label className="task-h1"> /{grade.total}</label> 
-            <label className="task-h1"> - Percentage Total: {grade.percentageTotal}</label> 
+            <label className="task-h1"> {grade.course}: {grade.requirement}  </label>
+            <p className="task-h1"> {grade.score}/{grade.total}</p> 
+            <p className="task-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
 
           <form onSubmit={onSubmit}>
             <div className='form-group'>

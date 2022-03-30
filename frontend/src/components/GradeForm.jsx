@@ -7,23 +7,25 @@ import '../pages/gradesStyles.css'
 
 function GradeForm() {
 
-    const initFormData = {
+    var initFormData = {
       course: '',
       requirement: '',
-      percentageTotal: '',
-      percentageScore: '',
-      total: '',
+      score: 0,
+      total: 0,
+      percentageScore: 0,
+      percentageTotal: 0,
     }
     const [FormData, setFormData] = useState(initFormData)
 
-    const { course, requirement, score , total, percentageTotal } = FormData
+    var { course, requirement, score , total, percentageScore, percentageTotal } = FormData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const onSubmit = (e) => {
       e.preventDefault()
-      dispatch(createGrade( { course, requirement, score , total, percentageTotal } ))
+      percentageScore = (score/total) * percentageTotal 
+      dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
     }
 
 
