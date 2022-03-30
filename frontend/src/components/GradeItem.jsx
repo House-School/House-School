@@ -7,12 +7,12 @@ function GradeItem({ grade }) {
 
   return (
     <button className='grade-btn'>
-      <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>&times;</button>
-      <label className="task-h1">Course:{grade.course} </label> 
-      <label className="task-h1">Requirement:{grade.requirement} </label> 
+      <label className="task-h1">Course: {grade.course} </label>
+      <label className="task-h1"> - Name of Requirement: {grade.requirement} </label> 
+      <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>Delete</button>
       <p>Percentage Total:{grade.percentageTotal}</p> 
       <p>Percentage Score:{grade.percentageScore}</p> 
-      <p>Total:{grade.Total}</p> 
+      <p>Total:{grade.total}</p> 
     </button>
   )
 }

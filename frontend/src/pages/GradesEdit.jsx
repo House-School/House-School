@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import GradeItem from '../components/GradeItem'
+import GradeItemEdit from '../components/GradeItemEdit'
 import './dashboardStyles.css'
 import './sidemenuStyles.css'
 import './gradesStyles.css'
@@ -46,14 +46,6 @@ function Grades() {
     navigate('/tasks')
   }
 
-  const onAddGrades = () => {
-    navigate('/grades/add')
-  }
-
-  const onEditGrades = () => {
-    navigate('/grades/edit')
-  }
-
   return (
     <>
     <div className='flex-container'>
@@ -68,24 +60,17 @@ function Grades() {
       </div>
       <div className='gradebg'>
         <section className='grade-heading'>
-          <h1 className='grade-h1'>Grades</h1>
+          <h1 className='grade-h1'>Edit Grades</h1>
         </section>
 
         <section>
             <>
             <div className="flex-container-grades">
                 {grades.map((grade) => (
-                    <GradeItem key={grade._id} grade={grade} />
+                    <GradeItemEdit key={grade._id} grade={grade} />
                 ))}
             </div>
-            <div className='flex-container-grades-fadetop'></div>
-            <div className='flex-container-grades-fadebottom'></div>
             </>
-        </section>
-
-        <section>
-          <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
-          <button className='addgrade_btn' onClick={onEditGrades}> Edit Grades </button>
         </section>
 
       </div> 

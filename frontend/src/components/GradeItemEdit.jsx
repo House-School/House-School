@@ -1,4 +1,5 @@
 import { useDispatch} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { updateGrade } from '../features/grades/gradeSlice'
 import '../pages/gradesStyles.css'
@@ -15,6 +16,7 @@ function GradeItem({ grade }) {
   const { course, requirement, percentageTotal, percentageScore, total } = gradeData
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -22,20 +24,22 @@ function GradeItem({ grade }) {
     window.location.reload(false) /*{force reload window}*/
 }
 
-const onChange = (e) => {
-    setGradeData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }))
-}
+  const onChange = (e) => {
+      setGradeData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }))
+  }
 
   return (
     <>
-    <div  className="flex-container-grades">
-    <div className="grade-modal-content">
-    <label className="grade-h1">{grade.course}{grade.requirement}{grade.percentageTotal}{grade.percentageScore}{grade.total}</label> 
-    <span class="grade-close-button">&times;</span>
       <section className='grade-form'>
+            <label className="task-h1"> {grade.course} </label>
+            <label className="task-h1">- {grade.requirement} </label> 
+            <label className="task-h1"> {grade.percentageScore}</label> 
+            <label className="task-h1"> /{grade.percentageTotal}</label> 
+            <label className="task-h1"> Total: {grade.total}</label> 
+
           <form onSubmit={onSubmit}>
             <div className='form-group'>
               <input
@@ -60,20 +64,22 @@ const onChange = (e) => {
             <div className='form-group'>
               <input
                 type='gradesedit-number'
-                id='percentageTotal'
-                name='percentageTotal'
-                value={percentageTotal}
-                onChange={onChange}
-              />
-            </div>
-            <div className='form-group'>
-              <input
-                type='gradesedit-number'
                 className='form-control'
                 id='percentageScore'
                 name='percentageScore'
                 value={percentageScore}
                 onChange={onChange}
+                placeholder='Enter Score in Percentage'
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                type='gradesedit-number'
+                id='percentageTotal'
+                name='percentageTotal'
+                value={percentageTotal}
+                onChange={onChange}
+                placeholder='Enter Percentage Total of Requirement'
               />
             </div>
             <div className='form-group'>
@@ -84,17 +90,18 @@ const onChange = (e) => {
                 name='total'
                 value={total}
                 onChange={onChange}
+                placeholder='Enter Total'
               />
             </div>
 
-          <button type='submit' className='reg-btn reg-btn-block'>
+          <button type='submit' className='addgrade_btn'>
                 Edit
           </button>
-
+          <button className='addgrade_btn' onClick={(e) => navigate('/grades/')}>
+              Cancel
+          </button>
           </form> 
         </section>
-        </div>
-        </div>
     </>
   )
 }

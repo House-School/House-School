@@ -9,6 +9,8 @@ import Register from './pages/Register'
 import Courses from './pages/Courses'
 import Tasks from './pages/Tasks'
 import Grades from './pages/Grades'
+import GradesAdd from './pages/GradesAdd'
+import GradesEdit from './pages/GradesEdit'
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path='/courses' element={<Courses />} />
             <Route path='/tasks' element={<Tasks />} />
             <Route path='/grades' element={<Grades />} />
+            <Route path='/grades/add' element={<GradesAdd />} />
+            <Route path='/grades/edit' element={<GradesEdit />} />
           </Routes>
         </div>
       </Router>
