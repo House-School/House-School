@@ -7,6 +7,7 @@ import './sidemenuStyles.css'
 import './gradesStyles.css'
 import {getGrades, reset} from '../features/grades/gradeSlice'
 
+
 function Grades() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -46,12 +47,37 @@ function Grades() {
     navigate('/tasks')
   }
 
+  const onAddCourseCalc = () => {
+    navigate('/grades/course')
+  }
+
   const onAddGrades = () => {
     navigate('/grades/add')
   }
 
   const onEditGrades = () => {
     navigate('/grades/edit')
+  }
+
+  let coursesGrades = []
+  let coursesTotal = []
+  let coursesNames = []
+
+  function InitCoursesTotal() {
+    console.log(coursesNames)
+    for (let i = 0; i < coursesNames.length; i++) { 
+      coursesTotal[i] = 0
+    }
+    return 0
+  }
+
+  function IterGradeCourse(arr) {
+    for (let i = 0; i < coursesNames.length; i++) { 
+      if (arr[0] === coursesNames[i]) {
+        coursesTotal[i] = coursesTotal[i] + arr[1]
+      }
+    }
+    return 0
   }
 
   return (
@@ -72,20 +98,39 @@ function Grades() {
         </section>
 
         <section>
-            <>
-            <div className="flex-container-grades">
-                {grades.map((grade) => (
-                    <GradeItem key={grade._id} grade={grade} />
-                ))}
-            </div>
-            <div className='flex-container-grades-fadetop'></div>
-            <div className='flex-container-grades-fadebottom'></div>
-            </>
-        </section>
-
-        <section>
+          <button className='addgrade_btn' onClick={onAddCourseCalc}> Add Course </button>
           <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
           <button className='addgrade_btn' onClick={onEditGrades}> Edit Grades </button>
+        </section>
+        <section>
+            <>
+            <div className="flex-container-grades">
+                {/* {grades.map((grade) => (
+                    <GradeItem key={grade._id} grade={grade} />
+                ))} */}
+                {grades.map((grade) => (
+                    coursesGrades.push([grade.course,grade.percentageTotal]),
+                    coursesNames.push(grade.course),
+                    coursesNames = [...new Set(coursesNames)]
+                ))}
+                <ul>
+                {coursesNames.map((item,index) => (
+                    InitCoursesTotal(),
+                    <p className = "task-h1" key={index}>Course ({index}) :{item}</p>
+                ))}
+                {coursesGrades.map((item,index) => (
+                    IterGradeCourse(item)
+                ))}
+                </ul>    
+                <ul>
+                {coursesTotal.map((item,index) => (
+                    <li className = "task-h1" key={index}>Total of ({index}): {item}</li>
+                ))}
+                </ul> 
+        </div>
+        <div className='flex-container-grades-fadetop'></div>
+        <div className='flex-container-grades-fadebottom'></div>
+        </>
         </section>
 
       </div> 

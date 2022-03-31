@@ -13,23 +13,18 @@ const gradeSchema = mongoose.Schema(
         },     
         requirement: {
             type: String,
-            required: [true, 'Please add name of requirement'],
         },
         score: {
             type: Number,
-            required: true
         },
         total: {
             type: Number,
-            required: true
         },
         percentageScore: {
             type: Number,
-            required: true
         },
         percentageTotal: {
             type: Number,
-            required: true
         },
     },
     {
