@@ -1,7 +1,7 @@
 import { useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { updateGrade } from '../features/grades/gradeSlice'
+import { deleteGrade, updateGrade } from '../features/grades/gradeSlice'
 import '../pages/gradesStyles.css'
 
 function GradeItem({ grade }) {
@@ -39,6 +39,7 @@ function GradeItem({ grade }) {
             <label className="task-h1"> {grade.course}: {grade.requirement}  </label>
             <p className="task-h1"> {grade.score}/{grade.total}</p> 
             <p className="task-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
+            <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>Delete</button>
 
           <form onSubmit={onSubmit}>
             <div className='form-group'>

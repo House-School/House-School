@@ -60,7 +60,7 @@ function Grades() {
       </div>
       <div className='gradebg'>
         <section className='grade-heading'>
-          <h1 className='grade-h1'>Edit Grades</h1>
+          <h1 className='grade-h1'>Edit/Delete Grades</h1>
         </section>
 
         <section>

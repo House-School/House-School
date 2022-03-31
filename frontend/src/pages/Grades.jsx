@@ -100,7 +100,7 @@ function Grades() {
         <section>
           <button className='addgrade_btn' onClick={onAddCourseCalc}> Add Course </button>
           <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
-          <button className='addgrade_btn' onClick={onEditGrades}> Edit Grades </button>
+          <button className='addgrade_btn' onClick={onEditGrades}> Edit/Delete Grades </button>
         </section>
         <section>
             <>
