@@ -131,6 +131,12 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
     font-size: x-large;
 }
 
+.course-form {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
 .course-btn {
     height: 130px;
     width: 180px;

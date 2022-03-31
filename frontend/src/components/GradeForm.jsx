@@ -26,8 +26,12 @@ function GradeForm() {
       e.preventDefault()
       percentageScore = (score/total) * percentageTotal 
       dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
+      window.location.reload(false) /*{force reload window}*/
     }
 
+    const onAddGrade = () => {
+      navigate('/grades')
+    }
 
     return (
         <section className='grade-form'>
@@ -99,10 +103,10 @@ function GradeForm() {
               placeholder='Enter Percentage Total of Requirement'
             />
           </div>
-         <button type='submit' className='addgrade_btn'>
+         <button type='submit' className='addgrade_btn' onClick={onAddGrade}>
               Submit
         </button>
-        <button className='addgrade_btn' onClick={(e) => navigate('/grades/')}>
+        <button className='addgrade_btn' onClick={(e) => navigate('/grades')}>
               Cancel
         </button>
         </form>

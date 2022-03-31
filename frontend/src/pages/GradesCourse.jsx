@@ -50,10 +50,10 @@ function Grades() {
     <>
     <div className='flex-container'>
       <div className='side-menu'>
-          <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
+          <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-item' onClick={onTasks}>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item'>Calendar</button>
+          <button className='side-menu-item-above'>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>

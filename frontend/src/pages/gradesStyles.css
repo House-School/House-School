@@ -1,10 +1,3 @@
-
-.form-check-input:checked + .form-checked-content {
-  opacity: .5;
-  text-decoration: line-through;
-  text-decoration-color:#302a92;
-}
-
 .gradebg {
   margin: 0 0 0 20px;
   background-color: #ffffff;
@@ -27,11 +20,46 @@
   padding-top: 10px;
 }
 
-/* Style the list items */
-.grade-li {
+.grade-h1 {
+  color:#302a92;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.grade-coursename {
+  color:#302a92;
+  width: 770px;
+  padding-left: 30px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: left;
+  border-style: solid;
+  border-width: 3px;
+  border-top: #ffffff00;
+  border-left: #ffffff00;
+  border-right: #ffffff00;
+}
+
+.grade-total {
+  color:#302a92;
+  width: 200px;
+  padding-right: 30px;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: right;
+  border-style: solid;
+  border-width: 3px;
+  border-top: #ffffff00;
+  border-left: #ffffff00;
+  border-right: #ffffff00;
+}
+
+.grade-name-li {
   position: relative;
-  padding: 12px 60px 12px 40px;
+  width: 770px;
+  padding: 10px 30px;
   list-style-type: none;
+  color: #302a92;
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
@@ -47,10 +75,25 @@
   user-select: none;
 }
 
+.grade-total-li {
+  position: relative;
+  width: 200px;
+  padding: 10px 30px;
+  list-style-type: none;
+  color: #302a92;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  overflow-wrap: break-word;
+  border-bottom:solid #9490ddd3;
+  text-align: right;
+  line-height: 35px;
 
-/* Darker background-color on hover */
-.grade-li:hover {
-  background: #ddd;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Style the close button */
@@ -71,12 +114,6 @@
   color: white;
 }
 
-input[type=checkbox] {
-  cursor: pointer;
-  transform: scale(2);
-  margin-right: 20px;
-}
-
 input[type=grades-text] {
   margin: 0;
   border: 1px solid #000;
@@ -84,12 +121,6 @@ input[type=grades-text] {
   width: 75%;
   float: left;
   font-size: 16px;
-}
-
-.grade-h1 {
-  color:#302a92;
-  font-weight: 600;
-  margin-bottom: 0px;
 }
 
 .addgrade_btn {
@@ -111,15 +142,41 @@ input[type=grades-text] {
   transform: scale(0.98);
 }
 
-.flex-container-grades {
-  height: 365px;
+.flex-container-gradedisplay {
+  height: 385px;
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 20px 30px;
   overflow: auto;
   position: relative;
   justify-content: flex-start;
+  align-items: stretch;
+  column-gap: 0px;
+}
+
+.flex-container-gradetitle {
+  display: flex;
+  height: 50px;
+  padding: 0px 30px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
+  position: relative;
+  justify-content: flex-start;
+  row-gap: 0px;
+}
+
+.flex-container-gradeitems {
+  height: 365px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 0px 30px;
+  overflow: auto;
+  position: relative;
+  justify-content: flex-start;
+  row-gap: 0px;
 }
 
 /* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
@@ -128,14 +185,75 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
   content:'';
   margin-top: -365px;
   height: 20px;
-  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
+  background: linear-gradient(to bottom, rgb(204, 32, 32) 0%, rgba(251, 251, 251, 0) 100%);
   position: relative;
 }
 
 .flex-container-grades-fadebottom {
   content:'';
-  margin-top: 325px;
+  margin-top: -20px;
   height: 20px;
   background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
   position: relative;
+}
+
+.bottom-buttons {
+  padding-top: 45px;
+}
+
+/* Modal element based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */
+.addgrade-modal {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, .7);
+  transition: all .4s;
+}
+  
+.addgrade-modal:target {
+  visibility: visible;
+  opacity: 1;
+}
+  
+.addgrade-modal-content {
+  border-radius: 20px;
+  position: relative;
+  width: 500px;
+  max-width: 90%;
+  background: #fff;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.addgrade-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #585858;
+  text-decoration: none;
+  font-size: 200%;
+}
+
+.addgrade-a {
+  color:#302a92;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.grade-form {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
 }

@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import GradeForm from '../components/GradeForm'
+import GradeCourse from '../components/GradeCourse'
 import GradeItem from '../components/GradeItem'
 import './dashboardStyles.css'
 import './sidemenuStyles.css'
@@ -82,62 +84,88 @@ function Grades() {
 
   return (
     <>
+    <section className='hide'>
+      {grades.map((grade) => (
+          coursesGrades.push([grade.course,grade.percentageScore]),
+          coursesNames.push(grade.course),
+          coursesNames = [...new Set(coursesNames)]
+      ))}
+    </section>
+    
     <div className='flex-container'>
       <div className='side-menu'>
-          <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
+          <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-item' onClick={onTasks}>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item'>Calendar</button>
+          <button className='side-menu-item-above'>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
+
       <div className='gradebg'>
         <section className='grade-heading'>
           <h1 className='grade-h1'>Grades</h1>
         </section>
 
         <section>
-          <button className='addgrade_btn' onClick={onAddCourseCalc}> Add Course </button>
-          <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
-          <button className='addgrade_btn' onClick={onEditGrades}> Edit/Delete Grades </button>
-        </section>
-        <section>
-            <>
-            <div className="flex-container-grades">
-                {/* {grades.map((grade) => (
-                    <GradeItem key={grade._id} grade={grade} />
-                ))} */}
-                {grades.map((grade) => (
-                    coursesGrades.push([grade.course,grade.percentageScore]),
-                    coursesNames.push(grade.course),
-                    coursesNames = [...new Set(coursesNames)]
-                ))}
+          <>
+            <div className='flex-container-gradedisplay'>
+              {/* {grades.map((grade) => (
+                  <GradeItem key={grade._id} grade={grade} />
+              ))} */}
+              <div className='flex-container-gradetitle'>
+                <p className='grade-coursename'> Course name </p>
+                <p className='grade-total'> Total </p>
+              </div>
+
+              <div className='flex-container-gradeitems'>
                 <ul>
-                {coursesNames.map((item,index) => (
-                    InitCoursesTotal(),
-                    <p className = "task-h1" key={index}>Course ({index}) :{item}</p>
-                ))}
-                {coursesGrades.map((item,index) => (
-                    IterGradeCourse(item)
-                ))}
+                  {coursesNames.map((item,index) => (
+                      InitCoursesTotal(),
+                      <li className = "grade-name-li" key={index}>Course ({index}): {item}</li>
+                  ))}
+                  {coursesGrades.map((item,index) => (
+                      IterGradeCourse(item)
+                  ))}
                 </ul>    
                 <ul>
-                {coursesTotal.map((item,index) => (
-                    <li className = "task-h1" key={index}>Total of ({index}): {item}</li>
-                ))}
+                  {coursesTotal.map((item,index) => (
+                      <li className = "grade-total-li" key={index}>{item}</li>
+                  ))}
                 </ul> 
-        </div>
-        <div className='flex-container-grades-fadetop'></div>
-        <div className='flex-container-grades-fadebottom'></div>
+              </div>  
+            </div>
+
+            <div className='flex-container-grades-fadebottom'>
+              <section className='bottom-buttons'>
+                <a href='#addgradecourse-modal'><button className='addgrade_btn'> Add Course </button></a>
+                <a href="#addgrade-modal"><button className='addgrade_btn'> Add Grades </button></a>
+                <button className='addgrade_btn' onClick={onEditGrades}> Edit/Delete Grades </button>
+              </section>
+            </div>
         </>
         </section>
 
-      </div> 
-      
-    </div>
-    
-    </>
+        <div id="addgrade-modal" className="addgrade-modal">
+          <div className="addgrade-modal-content">
+              <a className='addgrade-a'>Add grade</a>
+              <GradeForm />
+              <a href="" className="addgrade-modal-close">&times;</a>
+          </div>
+        </div>
+
+        <div id="addgradecourse-modal" className="addgrade-modal">
+          <div className="addgrade-modal-content">
+              <a className='addgrade-a'>Add course</a>
+              <GradeCourse />
+              <a href="" className="addgrade-modal-close">&times;</a>
+          </div>
+        </div>
+
+      </div>  
+    </div>   
+  </>
   )
 }
 

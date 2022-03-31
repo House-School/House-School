@@ -36,9 +36,9 @@ function GradeItem({ grade }) {
   return (
     <>
       <section className='grade-form'>
-            <label className="task-h1"> {grade.course}: {grade.requirement}  </label>
-            <p className="task-h1"> {grade.score}/{grade.total}</p> 
-            <p className="task-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
+            <label className="grade-h1"> {grade.course}: {grade.requirement}  </label>
+            <p className="grade-h1"> {grade.score}/{grade.total}</p> 
+            <p className="grade-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
             <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>Delete</button>
 
           <form onSubmit={onSubmit}>
@@ -98,7 +98,7 @@ function GradeItem({ grade }) {
           <button type='submit' className='addgrade_btn'>
                 Edit
           </button>
-          <button className='addgrade_btn' onClick={(e) => navigate('/grades/')}>
+          <button className='addgrade_btn' onClick={(e) => navigate('/grades')}>
               Cancel
           </button>
           </form> 

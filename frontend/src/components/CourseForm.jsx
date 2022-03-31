@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createCourse } from '../features/courses/courseSlice'
+import '../pages/coursesStyles.css'
 
 function CourseForm() {
   const [text, setText] = useState('')
@@ -21,10 +22,9 @@ function CourseForm() {
   }
 
   return (
-    <section className='form'>
+    <section className='course-form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='text'>Course</label>
           <input
             type='text'
             name='text'

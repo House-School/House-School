@@ -50,14 +50,15 @@ function Grades() {
     <>
     <div className='flex-container'>
       <div className='side-menu'>
-          <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
+          <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-item' onClick={onTasks}>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item'>Calendar</button>
+          <button className='side-menu-item-above'>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
+
       <div className='gradebg'>
         <section className='grade-heading'>
           <h1 className='grade-h1'>Edit/Delete Grades</h1>
@@ -65,18 +66,15 @@ function Grades() {
 
         <section>
             <>
-            <div className="flex-container-grades">
+            <div className="flex-container-gradedisplay">
                 {grades.map((grade) => (
                     <GradeItemEdit key={grade._id} grade={grade} />
                 ))}
             </div>
             </>
         </section>
-
-      </div> 
-      
-    </div>
-    
+      </div>  
+    </div> 
     </>
   )
 }
