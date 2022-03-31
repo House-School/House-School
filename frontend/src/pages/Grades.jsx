@@ -109,7 +109,7 @@ function Grades() {
                     <GradeItem key={grade._id} grade={grade} />
                 ))} */}
                 {grades.map((grade) => (
-                    coursesGrades.push([grade.course,grade.percentageTotal]),
+                    coursesGrades.push([grade.course,grade.percentageScore]),
                     coursesNames.push(grade.course),
                     coursesNames = [...new Set(coursesNames)]
                 ))}
