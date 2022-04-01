@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createGrade } from '../features/grades/gradeSlice'
 import { useDispatch } from 'react-redux'
+import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
 
 
@@ -23,16 +24,31 @@ function GradeCourse() {
     const navigate = useNavigate()
     const mongoose = require('mongoose');
 
-    const onSubmit = (e) => {
+    const options = {
+      render: (message, onConfirm, onCancel) => {
+        return (
+          <>
+          <div className='confirmgrade'>
+          <h1 className='confirmgrade_h1'> Confirm Course Addition </h1>
+          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+          </div>
+          </>
+        );
+      }
+    };
+
+    const onSubmit = async (e) => {
       e.preventDefault()
-      percentageScore = (score/total) * percentageTotal 
-      dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
-      window.location.reload(false) /*{force reload window}*/
+      const result = await confirm("Are you sure?", options);
+      if (result) {
+        percentageScore = (score/total) * percentageTotal 
+        dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
+        return;
+      }
+      console.log("You click No!");
     }
 
-    const onAddCourse = () => {
-      navigate('/grades')
-    }
 
     return (
         <section className='grade-form'>
@@ -50,11 +66,8 @@ function GradeCourse() {
               placeholder='Enter Course'
             />
           </div>  
-         <button type='submit' className='addgrade_btn' onClick={onAddCourse}>
+         <button type='submit' className='addgrade_btn'>
               Submit
-        </button>
-        <button className='addgrade_btn' onClick={(e) => navigate('/grades')}>
-              Cancel
         </button>
         </form>
       </section>

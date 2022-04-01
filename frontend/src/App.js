@@ -26,9 +26,9 @@ function App() {
             <Route path='/courses' element={<Courses />} />
             <Route path='/tasks' element={<Tasks />} />
             <Route path='/grades' element={<Grades />} />
-            <Route path='/grades/course' element={<GradesCourse />} />
-            <Route path='/grades/add' element={<GradesAdd />} />
-            <Route path='/grades/edit' element={<GradesEdit />} />
+            <Route path='/grades/course' element={<GradesCourse />} /> // Route to add Course in Grade Calculator
+            <Route path='/grades/add' element={<GradesAdd />} /> // Route to Add Grades
+            <Route path='/grades/edit' element={<GradesEdit />} /> // Route to Edit Grades
           </Routes>
         </div>
       </Router>

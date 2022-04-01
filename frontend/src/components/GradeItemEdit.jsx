@@ -2,6 +2,7 @@ import { useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { deleteGrade, updateGrade } from '../features/grades/gradeSlice'
+import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
 
 function GradeItem({ grade }) {
@@ -19,12 +20,55 @@ function GradeItem({ grade }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const onSubmit = (e) => {
+  const editOptions = {
+    render: (message, onConfirm, onCancel) => {
+      return (
+        <>
+          <div className='confirmgrade'>
+          <h1 className='confirmgrade_h1'> Confirm Edition of Grade </h1>
+          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+          </div>
+        </>
+      );
+    }
+  };
+
+  const deleteOptions = {
+    render: (message, onConfirm, onCancel) => {
+      return (
+        <>
+          <div className='confirmgrade'>
+          <h1 className='confirmgrade_h1'> Confirm Deletion of Grade </h1>
+          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+          </div>
+        </>
+      );
+    }
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault()
-    percentageScore = (score/total) * percentageTotal 
-    dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageScore, percentageTotal }} ))
-    window.location.reload(false) /*{force reload window}*/
-}
+    const result = await confirm("Are you sure?", editOptions);
+    if (result) {
+      percentageScore = (score/total) * percentageTotal 
+      dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageScore, percentageTotal }} ))
+      window.location.reload(false) /*{force reload window}*/
+      return;
+    }
+    console.log("You click No!");
+  }
+
+  const onClick = async (e) => {
+    e.preventDefault()
+    const result = await confirm("Are you sure?", deleteOptions);
+    if (result) {
+      dispatch(deleteGrade(grade._id))
+      return;
+    }
+    console.log("You click No!");
+  }
 
   const onChange = (e) => {
       setGradeData((prevState) => ({
@@ -39,7 +83,6 @@ function GradeItem({ grade }) {
             <label className="grade-h1"> {grade.course}: {grade.requirement}  </label>
             <p className="grade-h1"> {grade.score}/{grade.total}</p> 
             <p className="grade-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
-            <button className='deletegrade' onClick={() => dispatch(deleteGrade(grade._id))}>Delete</button>
 
           <form onSubmit={onSubmit}>
             <div className='form-group'>
@@ -98,9 +141,10 @@ function GradeItem({ grade }) {
           <button type='submit' className='addgrade_btn'>
                 Edit
           </button>
-          <button className='addgrade_btn' onClick={(e) => navigate('/grades')}>
+          <button className='addgrade_btn' onClick ={onClick}>Delete</button>
+          <button className='addgrade_btn' onClick={(e) => navigate('/grades/')}>
               Cancel
-          </button>
+            </button>
           </form> 
         </section>
     </>
