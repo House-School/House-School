@@ -46,21 +46,25 @@ function Grades() {
     navigate('/tasks')
   }
 
+  const onGrades = () => {
+    navigate('/grades')
+  }
+
   return (
     <>
     <div className='flex-container'>
       <div className='side-menu'>
-          <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
+          <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-item' onClick={onTasks}>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item'>Calendar</button>
+          <button className='side-menu-item-above'>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
       </div>
       <div className='gradebg'>
         <section className='grade-heading'>
-          <h1 className='grade-h1'>Add Course</h1>
+          <h1 className='grade-h1'>Grades - Add Course</h1>
         </section>
 
         <section>
@@ -69,10 +73,9 @@ function Grades() {
                 <GradeCourse />
             </div>
             </>
-        </section>
-
+        </section>  
       </div> 
-      
+      <button className='backgrade_btn' onClick={onGrades}>Back to Grades - Summary</button>
     </div>
     
     </>

@@ -96,6 +96,26 @@
   user-select: none;
 }
 
+.backgrade_btn {
+  position: absolute;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #302a92;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  width: 250px;
+  height: 45px;
+  margin-left: 965px;
+  margin-top: 480px;
+}
+
+.backgrade_btn:hover {
+  transform: scale(0.98);
+}
+
 /* Style the close button */
 .delete_grade {
   position: absolute;
@@ -142,27 +162,30 @@ input[type=grades-text] {
   transform: scale(0.98);
 }
 
-.confirmgrade {
+.confirm-box {
+  z-index: 1000;
   position: absolute;
-  width: 350px;
-  height: 180px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -150px;
-  background-color: #fff;
-  border-radius: 5%;
+  margin-left: -30px;
+}
+
+.confirmgrade {
+  border-radius: 20px;
+  position: absolute;
+  width: 370px;
+  background: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .confirmgrade_h1 {
   font-size: 24px;
   color: #302a92;
-  margin: 5% auto;
   text-align: center;
 }
 
 .confirmgrade_btn {
-  padding: 5px;
+  margin-left: 60px;
+  position: relative;
   border: 1px solid #000;
   border-radius: 5px;
   background: #302a92;
@@ -173,15 +196,11 @@ input[type=grades-text] {
   text-align: center;
   width: 24%;
   height: 45px;
-  margin-left: 15%;
-  margin-right: 5%;
-  margin-top: 5%;
 }
 
 .confirmgrade_btn:hover {
   transform: scale(0.98);
 }
-
 
 .flex-container-gradedisplay {
   height: 385px;
@@ -240,52 +259,6 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 
 .bottom-buttons {
   padding-top: 45px;
-}
-
-/* Modal element based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */
-.addgrade-modal {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(77, 77, 77, .7);
-  transition: all .4s;
-}
-  
-.addgrade-modal:target {
-  visibility: visible;
-  opacity: 1;
-}
-  
-.addgrade-modal-content {
-  border-radius: 20px;
-  position: relative;
-  width: 500px;
-  max-width: 90%;
-  background: #fff;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
-.addgrade-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #585858;
-  text-decoration: none;
-  font-size: 200%;
-}
-
-.addgrade-a {
-  color:#302a92;
-  font-weight: 600;
-  font-size: x-large;
 }
 
 .grade-form {

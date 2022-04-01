@@ -29,9 +29,9 @@ function GradeCourse() {
         return (
           <>
           <div className='confirmgrade'>
-          <h1 className='confirmgrade_h1'> Confirm Course Addition </h1>
-          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
-          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+            <h1 className='confirmgrade_h1'> Confirm course addition? </h1>
+            <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+            <button className='confirmgrade_btn' onClick={onCancel}> No </button>
           </div>
           </>
         );
@@ -41,12 +41,15 @@ function GradeCourse() {
     const onSubmit = async (e) => {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
+      window.location.href = 'http://localhost:3000/grades'
       if (result) {
         percentageScore = (score/total) * percentageTotal 
         dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
         return;
       }
-      console.log("You click No!");
+      else {
+        window.location.reload(false) /*{force reload window}*/
+      }
     }
 
 

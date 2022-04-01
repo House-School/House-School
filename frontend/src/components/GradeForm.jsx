@@ -28,7 +28,7 @@ function GradeForm() {
         return (
           <>
           <div className='confirmgrade'>
-          <h1 className='confirmgrade_h1'> Confirm Addition of Grade </h1>
+          <h1 className='confirmgrade_h1'> Add grade? </h1>
           <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
           <button className='confirmgrade_btn' onClick={onCancel}> No </button>
           </div>
@@ -41,16 +41,15 @@ function GradeForm() {
     const onSubmit = async (e) => {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
+      window.location.href = 'http://localhost:3000/grades'
       if (result) {
         percentageScore = (score/total) * percentageTotal 
         dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
         return;
       }
-      console.log("You click No!");
-    }
-
-    const onAddGrade = () => {
-      navigate('/grades')
+      else {
+        window.location.reload(false) /*{force reload window}*/
+      }
     }
 
     return (
@@ -123,7 +122,7 @@ function GradeForm() {
               placeholder='Enter Percentage Total of Requirement'
             />
           </div>
-         <button type='submit' className='addgrade_btn' onClick={onAddGrade}>
+         <button type='submit' className='addgrade_btn'>
               Submit
         </button>
         </form>

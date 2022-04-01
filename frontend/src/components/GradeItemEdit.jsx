@@ -25,7 +25,7 @@ function GradeItem({ grade }) {
       return (
         <>
           <div className='confirmgrade'>
-          <h1 className='confirmgrade_h1'> Confirm Edition of Grade </h1>
+          <h1 className='confirmgrade_h1'> Save changes to grade? </h1>
           <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
           <button className='confirmgrade_btn' onClick={onCancel}> No </button>
           </div>
@@ -39,7 +39,7 @@ function GradeItem({ grade }) {
       return (
         <>
           <div className='confirmgrade'>
-          <h1 className='confirmgrade_h1'> Confirm Deletion of Grade </h1>
+          <h1 className='confirmgrade_h1'> Delete grade? </h1>
           <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
           <button className='confirmgrade_btn' onClick={onCancel}> No </button>
           </div>

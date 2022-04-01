@@ -64,7 +64,7 @@ function Grades() {
       </div>
       <div className='gradebg'>
         <section className='grade-heading'>
-          <h1 className='grade-h1'>Add Grades</h1>
+          <h1 className='grade-h1'>Grades - Add Grades</h1>
         </section>
 
         <section>
@@ -74,9 +74,8 @@ function Grades() {
             </div>
             </>
         </section>
-
       </div> 
-      
+      <button className='backgrade_btn' onClick={onGrades}>Back to Grades - Summary</button>
     </div>
     
     </>

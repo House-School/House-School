@@ -105,7 +105,7 @@ function Grades() {
 
       <div className='gradebg'>
         <section className='grade-heading'>
-          <h1 className='grade-h1'>Grades</h1>
+          <h1 className='grade-h1'>Grades - Summary</h1>
         </section>
 
         <section>
@@ -123,7 +123,7 @@ function Grades() {
                 <ul>
                   {coursesNames.map((item,index) => (
                       InitCoursesTotal(),
-                      <li className = "grade-name-li" key={index}>Course ({index}): {item}</li>
+                      <li className = "grade-name-li" key={index}>{item}</li>
                   ))}
                   {coursesGrades.map((item,index) => (
                       IterGradeCourse(item)
@@ -139,30 +139,13 @@ function Grades() {
 
             <div className='flex-container-grades-fadebottom'>
               <section className='bottom-buttons'>
-                <a href='#addgradecourse-modal'><button className='addgrade_btn'> Add Course </button></a>
-                <a href="#addgrade-modal"><button className='addgrade_btn'> Add Grades </button></a>
+                <button className='addgrade_btn' onClick={onAddCourseCalc}> Add Course </button>
+                <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
                 <button className='addgrade_btn' onClick={onEditGrades}> Edit/Delete Grades </button>
               </section>
             </div>
         </>
         </section>
-
-        <div id="addgrade-modal" className="addgrade-modal">
-          <div className="addgrade-modal-content">
-              <a className='addgrade-a'>Add grade</a>
-              <GradeForm />
-              <a href="" className="addgrade-modal-close">&times;</a>
-          </div>
-        </div>
-
-        <div id="addgradecourse-modal" className="addgrade-modal">
-          <div className="addgrade-modal-content">
-              <a className='addgrade-a'>Add course</a>
-              <GradeCourse />
-              <a href="" className="addgrade-modal-close">&times;</a>
-          </div>
-        </div>
-
       </div>  
     </div>   
   </>
