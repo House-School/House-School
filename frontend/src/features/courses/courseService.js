@@ -38,10 +38,23 @@ const deleteCourse = async (courseId, token) => {
   return response.data
 }
 
+const updateCourse = async (courseId, courseData, token) => {
+  const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }
+
+  const response = await axios.put(API_URL + "/" + courseId, courseData, config)
+
+  return response.data
+}
+
 const courseService = { 
   createCourse,
   getCourses,
   deleteCourse,
+  updateCourse,
 }
 
 export default courseService

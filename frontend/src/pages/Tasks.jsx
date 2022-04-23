@@ -45,6 +45,10 @@ function Tasks() {
     navigate('/grades')
   }
 
+  const onCalendar = () => {
+    navigate('/events')
+  }
+
   return (
     <>
     <div className='flex-container'>
@@ -52,7 +56,7 @@ function Tasks() {
           <button className='side-menu-item-above' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-selected'>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item'>Calendar</button>
+          <button className='side-menu-item' onClick={onCalendar}>Calendar</button>
           <button className='side-menu-item'onClick={onGrades}>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { createGrade } from '../features/grades/gradeSlice'
 import { useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
@@ -21,7 +20,6 @@ function GradeForm() {
     var { course, requirement, score , total, percentageScore, percentageTotal } = FormData
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const options = {
       render: (message, onConfirm, onCancel) => {

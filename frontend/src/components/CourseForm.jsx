@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createCourse } from '../features/courses/courseSlice'
+import { confirm } from "react-confirm-box";
 import '../pages/coursesStyles.css'
 
 function CourseForm() {
@@ -10,11 +11,32 @@ function CourseForm() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const onSubmit = (e) => {
+  const options = {
+    render: (message, onConfirm, onCancel) => {
+      return (
+        <>
+        <div className='confirmgrade'>
+        <h1 className='confirmgrade_h1'> Add Course? </h1>
+        <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+        <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+        </div>
+        </>
+      );
+    }
+  };
+  
+  const onSubmit = async (e) => {
     e.preventDefault()
-
-    dispatch(createCourse({ text }))
-    setText('')
+    const result = await confirm("Are you sure?", options);
+    window.location.href = 'http://localhost:3000/courses'
+    if (result) {
+      dispatch(createCourse({ text }))
+      setText('')
+      return;
+    }
+    else {
+      window.location.reload(false) /*{force reload window}*/
+    }
   }
 
   const onAddCourse = () => {

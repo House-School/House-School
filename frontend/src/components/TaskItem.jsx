@@ -27,8 +27,8 @@ function TaskItem({ task }) {
         <>     
         <li className='task-li'>
             <div className='task-item'>
-                <input class="form-check-input" type="checkbox" value=""></input>
-                <span class="form-checked-content">
+                <input className="form-check-input" type="checkbox" value=""></input>
+                <span className="form-checked-content">
                     <form onSubmit={onSubmit} className="task-h2">
                         <input 
                             type="tasksedit-text" 

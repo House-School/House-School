@@ -12,6 +12,7 @@ import Grades from './pages/Grades'
 import GradesCourse from './pages/GradesCourse'
 import GradesAdd from './pages/GradesAdd'
 import GradesEdit from './pages/GradesEdit'
+import Events from './pages/Events'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path='/grades/course' element={<GradesCourse />} /> // Route to add Course in Grade Calculator
             <Route path='/grades/add' element={<GradesAdd />} /> // Route to Add Grades
             <Route path='/grades/edit' element={<GradesEdit />} /> // Route to Edit Grades
+            <Route path='/events' element={<Events />} />
           </Routes>
         </div>
       </Router>

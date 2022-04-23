@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import GradeForm from '../components/GradeForm'
-import GradeCourse from '../components/GradeCourse'
-import GradeItem from '../components/GradeItem'
 import './dashboardStyles.css'
 import './sidemenuStyles.css'
 import './gradesStyles.css'
@@ -61,19 +58,22 @@ function Grades() {
     navigate('/grades/edit')
   }
 
+  const onCalendar = () => {
+    navigate('/events')
+  }
+
   let coursesGrades = []
   let coursesTotal = []
   let coursesNames = []
 
-  function InitCoursesTotal() {
-    console.log(coursesNames)
+  function InitCoursesTotal() { //initializes array of course totals to 0
     for (let i = 0; i < coursesNames.length; i++) { 
       coursesTotal[i] = 0
     }
     return 0
   }
 
-  function IterGradeCourse(arr) {
+  function IterGradeCourse(arr) { //calculates the total per course
     for (let i = 0; i < coursesNames.length; i++) { 
       if (arr[0] === coursesNames[i]) {
         coursesTotal[i] = coursesTotal[i] + arr[1]
@@ -97,7 +97,7 @@ function Grades() {
           <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
           <button className='side-menu-item' onClick={onTasks}>Tasks</button>
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
-          <button className='side-menu-item-above'>Calendar</button>
+          <button className='side-menu-item' onClick={onCalendar}>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
           <button className='side-menu-item'>Rewards</button>
           <button className='side-menu-item'>Account linking</button>
@@ -111,9 +111,6 @@ function Grades() {
         <section>
           <>
             <div className='flex-container-gradedisplay'>
-              {/* {grades.map((grade) => (
-                  <GradeItem key={grade._id} grade={grade} />
-              ))} */}
               <div className='flex-container-gradetitle'>
                 <p className='grade-coursename'> Course name </p>
                 <p className='grade-total'> Total </p>

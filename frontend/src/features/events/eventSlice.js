@@ -1,20 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import courseService from './courseService'
+import eventService from './eventService'
 
 const initialState = {
-  courses: [],
+  events: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 }
 
-export const createCourse = createAsyncThunk(
-  'courses/create',
-  async (courseData, thunkAPI) => {
+export const createEvent = createAsyncThunk(
+  'events/create',
+  async (eventData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await courseService.createCourse(courseData, token)
+      console.log(eventData)
+      return await eventService.createEvent(eventData, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -27,12 +28,12 @@ export const createCourse = createAsyncThunk(
   }
 )
 
-export const getCourses = createAsyncThunk(
-  'courses/getAll',
+export const getEvents = createAsyncThunk(
+  'events/getAll',
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await courseService.getCourses(token)
+      return await eventService.getEvents(token)
     } catch (error) {
       const message =
         (error.response &&
@@ -45,12 +46,12 @@ export const getCourses = createAsyncThunk(
   }
 )
 
-export const deleteCourse = createAsyncThunk(
-  'courses/delete',
+export const deleteEvent = createAsyncThunk(
+  'events/delete',
   async (id, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await courseService.deleteCourse(id, token)
+      return await eventService.deleteEvent(id, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -63,12 +64,13 @@ export const deleteCourse = createAsyncThunk(
   }
 )
 
-export const updateCourse = createAsyncThunk(
-  'courses/update',
-  async ({id, courseData}, thunkAPI) => {
+// Update user event
+export const updateEvent = createAsyncThunk(
+  'events/update',
+  async ({id, eventData}, thunkAPI) => {
       try {
           const token = thunkAPI.getState().auth.user.token
-          return await courseService.updateCourse(id, courseData, token)
+          return await eventService.updateEvent(id, eventData, token)
       } catch (error) {
           const message =
           (error.response &&
@@ -81,70 +83,70 @@ export const updateCourse = createAsyncThunk(
   }
 )
 
-export const courseSlice = createSlice({
-  name: 'course',
+export const eventSlice = createSlice({
+  name: 'event',
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createCourse.pending, (state) => {
+      .addCase(createEvent.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createCourse.fulfilled, (state, action) => {
+      .addCase(createEvent.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.courses.push(action.payload)
+        state.events.push(action.payload)
       })
-      .addCase(createCourse.rejected, (state, action) => {
+      .addCase(createEvent.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(getCourses.pending, (state) => {
+      .addCase(getEvents.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getCourses.fulfilled, (state, action) => {
+      .addCase(getEvents.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.courses = action.payload
+        state.events = action.payload
       })
-      .addCase(getCourses.rejected, (state, action) => {
+      .addCase(getEvents.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(deleteCourse.pending, (state) => {
+      .addCase(deleteEvent.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(deleteCourse.fulfilled, (state, action) => {
+      .addCase(deleteEvent.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.courses = state.courses.filter(
-          (courses) => courses._id !== action.payload.id
+        state.events = state.events.filter(
+          (events) => events._id !== action.payload.id
         )
       })
-      .addCase(deleteCourse.rejected, (state, action) => {
+      .addCase(deleteEvent.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(updateCourse.pending, (state) => {
+      .addCase(updateEvent.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateCourse.fulfilled, (state, action) => {
+      .addCase(updateEvent.fulfilled, (state, action) => {
           state.isLoading = false;
           state.isSuccess = true;
-          state.courses = state.courses.map((course) => course._id !== action.payload.id
+          state.events = state.events.map((event) => event._id !== action.payload.id
               ? {
-                  ...course,
+                  ...event,
                   text: action.payload.text
               }
-              :  course
+              :  event
           )
       })
-      .addCase(updateCourse.rejected, (state, action) => {
+      .addCase(updateEvent.rejected, (state, action) => {
           state.isLoading = false;
           state.isError = true;
           state.message = action.payload;
@@ -152,5 +154,5 @@ export const courseSlice = createSlice({
   },
 })
 
-export const { reset } = courseSlice.actions
-export default courseSlice.reducer
+export const { reset } = eventSlice.actions
+export default eventSlice.reducer

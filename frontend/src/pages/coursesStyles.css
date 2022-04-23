@@ -167,6 +167,14 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
     text-decoration: underline;
 }
 
+.rename-a {
+  color:#302a92;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 135px;
+  cursor: pointer;  
+}
+
 .deletecourse{
   padding-left: 155px;
   border: 0px;
