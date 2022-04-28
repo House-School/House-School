@@ -70,27 +70,39 @@ function Events() {
           <button className='side-menu-item'>Account linking</button>
       </div>
 
-      <div className='coursebg'>
-        <section className='course-heading'>
-          <h1 className='course-h1'>Events</h1>
+      <div className='eventbg'>
+        <section className='event-heading'>
+          <h1 className='event-h1'>Events</h1>
         </section>
-        
-        <EventForm />
 
+        <button className='addevent'>
+          <a className='addbtn' href="#addevent-modal">+</a>
+        </button>
+        
         <section>
           <>
-            <div className="flex-container-tasks">
+            <div className="flex-container-events">
                 {events.map((event) => (
                     <EventItem key={event._id} event={event} />
                 ))}
             </div>
-            
+
             {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
             https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div  */}
-              <div className='flex-container-tasks-fadetop'></div>
-              <div className='flex-container-tasks-fadebottom'></div>
+            <div className='flex-container-events-fadetop'></div>
+            <div className='flex-container-events-fadebottom'></div>
             </>
-         </section>
+        </section>
+
+        {/* Based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */}
+        <div id="addevent-modal" className="event-modal">
+          <div className="event-modal-content">
+              <a className='event-a'>Add event</a>
+              <EventForm />
+              <a href="" className="event-modal-close">&times;</a>
+          </div>
+        </div>
+
       </div>       
     </div>  
     </>

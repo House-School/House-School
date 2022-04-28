@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createEvent } from '../features/events/eventSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { confirm } from "react-confirm-box";
 import { getCourses} from '../features/courses/courseSlice'
 import '../pages/eventsStyles.css'
@@ -22,12 +23,13 @@ function EventForm() {
     const mongoose = require('mongoose');
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
       dispatch(getCourses())
     }, [dispatch])
 
-    const options = {
+    {/* const options = {
       render: (message, onConfirm, onCancel) => {
         return (
           <>
@@ -39,25 +41,21 @@ function EventForm() {
           </>
         );
       }
-    };
+    };  */}
     
 
     const onSubmit = async (e) => {
       e.preventDefault()
-      const result = await confirm("Are you sure?", options);
-      if (result) {
-        course = document.getElementById("dropdown-course");
-        course = mongoose.Types.ObjectId(course.value)
-        dispatch(createEvent( { course, eventName, deadline }))
-        return;
-      }
-      else {
-        window.location.reload(false) /*{force reload window}*/
-      }
+      dispatch(createEvent( { course, eventName, deadline }))
+      window.location.reload(false) /*{force reload window}*/
+    }
+
+    const onAddEvent = () => {
+      navigate('/events')
     }
 
     return (
-        <section className='grade-form'>
+        <section className='event-form'>
         <form onSubmit={onSubmit}>
         <div className='form-group'>
             <select
@@ -98,9 +96,12 @@ function EventForm() {
               placeholder='Enter Score Points'
             />
           </div>
-         <button type='submit' className='addgrade_btn'>
-              Submit
-        </button>
+          <button type='submit' className='addgrade_btn' onClick={onAddEvent}>
+            Confirm
+          </button>
+          <button className='addgrade_btn'>
+            <a className='cancelbtn' href=""> Cancel </a>
+          </button>
         </form>
       </section>
     )

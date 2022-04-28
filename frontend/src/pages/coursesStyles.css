@@ -203,6 +203,12 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
   justify-content: center;
 }
 
+.cancelbtn {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .btn:hover {
   transform: scale(0.98);
 }
