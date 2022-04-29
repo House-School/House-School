@@ -141,6 +141,7 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
     height: 130px;
     width: 180px;
     margin: 5px;
+    margin-right: -60px;
     border: 1px solid #302a92;
     border-radius: 10px;
     background: linear-gradient(0deg, #ffffff 35%, #384694 35%);
@@ -256,4 +257,42 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
   .heading p {
     font-size: 1.5rem;
   }
+}
+
+.box {
+  display: none;
+  background: #ccc;
+  width: 200px;
+  height: 130px;
+  border-radius: 20px;
+  margin-right: 30px;
+  margin-top: 5px;
+}
+#trigger:checked + .box {
+  display: block;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  top: 105px;
+  right: 10px;
+  cursor: pointer;
+  transform: scale(2);
+  z-index: 99;
+}
+
+.rename-btn {
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #302a92;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  justify-content: center;
 }
