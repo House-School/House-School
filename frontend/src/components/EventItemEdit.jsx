@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { createEvent } from '../features/events/eventSlice'
+import { updateEvent } from '../features/events/eventSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { confirm } from "react-confirm-box";
 import { getCourses} from '../features/courses/courseSlice'
 import '../pages/eventsStyles.css'
 
 
-function EventForm() {
+function EventItemEdit( {event}) {
 
     var initFormData = {
         course: '',
@@ -19,26 +19,49 @@ function EventForm() {
     )
 
     var { course, eventName, deadline } = FormData
+    const mongoose = require('mongoose');
 
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     useEffect(() => {
       dispatch(getCourses())
     }, [dispatch])
 
+    const options = {
+      render: (message, onConfirm, onCancel) => {
+        return (
+          <>
+          <div className='confirmgrade'>
+          <h1 className='confirmgrade_h1'> Edit event? </h1>
+          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+          </div>
+          </>
+        );
+      }
+    };
+    
+
     const onSubmit = async (e) => {
       e.preventDefault()
-      console.log(course)
-      dispatch(createEvent( { course, eventName, deadline }))
-    }
-
-    const onAddEvent = () => {
-      navigate('/events')
+      const result = await confirm("Are you sure?", options);
+      if (result) {
+        course = document.getElementById("dropdown-course");
+        course = mongoose.Types.ObjectId(course.value)
+        dispatch(updateEvent( {id: event._id, eventData: {course, eventName, deadline }}))
+        return;
+      }
+      else {
+        window.location.reload(false) /*{force reload window}*/
+      }
     }
 
     return (
-        <section className='event-form'>
+        <>
+        <section className='grade-form'>
+        <p className='event-p'>Event: {event.eventName} </p>
+        <p className='event-p'>Course: {event.course} </p>
+        <p className='event-p'>Date: {event.deadline} </p>
         <form onSubmit={onSubmit}>
         <div className='form-group'>
             <select
@@ -80,15 +103,13 @@ function EventForm() {
               placeholder='Enter Score Points'
             />
           </div>
-          <button type='submit' className='addgrade_btn' onClick={onAddEvent}>
-            Confirm
-          </button>
-          <button className='addgrade_btn'>
-            <a className='cancelbtn' href=""> Cancel </a>
-          </button>
+         <button type='submit' className='addgrade_btn'>
+              Submit
+        </button>
         </form>
       </section>
+      </>
     )
 }
 
-export default EventForm
+export default EventItemEdit

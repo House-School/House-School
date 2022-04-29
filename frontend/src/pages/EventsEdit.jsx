@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import EventForm from '../components/EventForm'
-import EventItem from '../components/EventItem'
+import EventItemEdit from '../components/EventItemEdit'
 import { getEvents, reset } from '../features/events/eventSlice'
 import './eventsStyles.css'
 import './sidemenuStyles.css'
@@ -57,10 +57,6 @@ function Events() {
     navigate('/events')
   }
 
-  const onEditEvents = () => {
-    navigate('/events/edit')
-  }
-
   return (
     <>
     <div className='flex-container'>
@@ -74,43 +70,26 @@ function Events() {
           <button className='side-menu-item'>Account linking</button>
       </div>
 
-      <div className='eventbg'>
-        <section className='event-heading'>
-          <h1 className='event-h1'>Events</h1>
+      <div className='coursebg'>
+        <section className='course-heading'>
+          <h1 className='course-h1'>Edit Events</h1>
         </section>
 
-        <button className='addevent'>
-          <a className='addbtn' href="#addevent-modal">+</a>
-        </button>
-
-        <button className='addevent-btn' onClick={onEditEvents}> Edit Events </button> 
-         
         <section>
           <>
-            <div className="flex-container-events">
+            <div className="flex-container-tasks">
                 {events.map((event) => (
-                    <EventItem key={event._id} event={event} />
+                    <EventItemEdit key={event._id} event={event} />
                 ))}
             </div>
             
-
             {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
             https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div  */}
-            <div className='flex-container-events-fadetop'></div>
-            <div className='flex-container-events-fadebottom'></div>
+              <div className='flex-container-tasks-fadetop'></div>
+              <div className='flex-container-tasks-fadebottom'></div>
             </>
-        </section>
-
-        {/* Based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */}
-        <div id="addevent-modal" className="event-modal">
-          <div className="event-modal-content">
-              <a className='event-a'>Add event</a>
-              <EventForm />
-              <a href="" className="event-modal-close">&times;</a>
-          </div>
-        </div>
-        
-      </div>    
+         </section>
+      </div>  
     </div>  
     </>
   )
