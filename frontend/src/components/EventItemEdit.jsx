@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { updateEvent } from '../features/events/eventSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
+import { useNavigate } from 'react-router-dom'
 import { getCourses} from '../features/courses/courseSlice'
 import '../pages/eventsStyles.css'
 
@@ -17,7 +18,7 @@ function EventItemEdit( {event}) {
     const { courses } = useSelector(
       (state) => state.courses
     )
-
+    const navigate = useNavigate()
     var { course, eventName, deadline } = FormData
     const mongoose = require('mongoose');
 
@@ -40,6 +41,10 @@ function EventItemEdit( {event}) {
         );
       }
     };
+
+    const onEditEvent = () => {
+      navigate('/events/edit')
+    }
     
 
     const onSubmit = async (e) => {
@@ -48,7 +53,9 @@ function EventItemEdit( {event}) {
       if (result) {
         course = document.getElementById("dropdown-course");
         course = mongoose.Types.ObjectId(course.value)
+        console.log(course)
         dispatch(updateEvent( {id: event._id, eventData: {course, eventName, deadline }}))
+        window.location.reload(false) /*{force reload window}*/
         return;
       }
       else {
@@ -70,10 +77,10 @@ function EventItemEdit( {event}) {
                 ...FormData,
                 course: e.target.value,
               })}>
-            <option> Select a course </option>
             {courses.map((course) => (
               <option key={course._id} value={course._id}> {course.text} </option>
             ))}
+              <option> Select a course </option>
             </select>
           </div>
           <div className='form-group'>
@@ -103,7 +110,7 @@ function EventItemEdit( {event}) {
               placeholder='Enter Score Points'
             />
           </div>
-         <button type='submit' className='addgrade_btn'>
+         <button type='submit' className='addgrade_btn' onClick={onEditEvent}>
               Submit
         </button>
         </form>
