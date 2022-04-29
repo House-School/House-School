@@ -1,0 +1,179 @@
+.eventbg {
+    margin: 0 0 0 20px;
+    background-color: #ffffff;
+    height: 550px;
+    width: 1100px;
+    border-radius: 30px;
+}
+
+.event-heading {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.event-h1 {
+    color:#302a92;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.event-a {
+    padding-left: 20px;
+    padding-top: 7px;
+    color:#302a92;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.addbtn {
+    color:#ffffff;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.event-p {
+    padding-left: 20px;
+    color:#302a92;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.event-btn {
+    height: 130px;
+    width: 300px;
+    margin: 5px;
+    border: 1px solid #302a92;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #384694;
+    font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    text-align: left;
+}
+
+.addevent {
+    margin-left: 430px;
+    margin-top: 380px;
+    background-color: #384694;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 99;
+    cursor: pointer;
+}
+
+.deleteevent{
+    padding-left: 15px;
+    padding-right: 20px;
+    border: 0px;
+    border-radius: 5px;
+    background: #ffffff00;
+    color: #302a92;
+    font-size: 30px;
+    cursor: pointer;
+    appearance: button;
+    display: flex;
+}
+
+.cancelbtn {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.flex-container-eventname {
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+    border-bottom: solid 3px #302a92;
+}
+
+.flex-container-events {
+    height: 445px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 30px;
+    overflow: auto;
+    position: relative;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
+https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
+.flex-container-events-fadetop {
+    content:'';
+    margin-top: -455px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
+    position: relative;
+}
+
+.flex-container-events-fadebottom {
+    content:'';
+    margin-top: 415px;
+    height: 20px;
+    background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
+    position: relative;
+}
+
+/* Modal element based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */
+.event-modal {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(77, 77, 77, .7);
+    transition: all .4s;
+}
+
+.event-modal:target {
+visibility: visible;
+opacity: 1;
+}
+
+.event-modal-content {
+border-radius: 20px;
+position: relative;
+width: 500px;
+max-width: 90%;
+background: #fff;
+padding-top: 1em;
+padding-bottom: 1em;
+}
+
+.event-modal-close {
+position: absolute;
+top: 10px;
+right: 20px;
+color: #585858;
+text-decoration: none;
+font-size: 200%;
+}
+
+.event-form {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}

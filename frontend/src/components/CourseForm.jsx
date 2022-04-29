@@ -11,7 +11,7 @@ function CourseForm() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const options = {
+  {/* const options = {
     render: (message, onConfirm, onCancel) => {
       return (
         <>
@@ -23,20 +23,14 @@ function CourseForm() {
         </>
       );
     }
-  };
+  }; */}
   
   const onSubmit = async (e) => {
     e.preventDefault()
-    const result = await confirm("Are you sure?", options);
     window.location.href = 'http://localhost:3000/courses'
-    if (result) {
-      dispatch(createCourse({ text }))
-      setText('')
-      return;
-    }
-    else {
-      window.location.reload(false) /*{force reload window}*/
-    }
+    dispatch(createCourse({ text }))
+    setText('')
+    window.location.reload(false) /*{force reload window}*/
   }
 
   const onAddCourse = () => {
@@ -55,9 +49,12 @@ function CourseForm() {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <div className='form-group'>
+        <div className='flex-container'>
           <button className='btn btn-block' type='submit' onClick={onAddCourse}>
-            Add Course
+            Confirm
+          </button>
+          <button className='btn btn-block'>
+            <a className='cancelbtn' href=""> Cancel </a>
           </button>
         </div>
       </form>

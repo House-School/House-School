@@ -7,9 +7,14 @@ function EventItem({ event }) {
   const dispatch = useDispatch()
 
   return (
-    <button className='grade-btn'>
-      <label className="task-h1">Course: {event.course} </label>
-      <button className='deletegrade' onClick={() => dispatch(deleteEvent(event._id))}>Delete</button>
+    <button className='event-btn'>
+      <div className='flex-container-eventname'>
+        <a className="event-a">{event.eventName} </a>
+        <button className='deleteevent' onClick={() => dispatch(deleteEvent(event._id))}>&times;</button>
+      </div>
+      
+      <p className='event-p'>Course: {event.course} </p>
+      <p className='event-p'>Date: {event.deadline} </p>
     </button>
   )
 }
