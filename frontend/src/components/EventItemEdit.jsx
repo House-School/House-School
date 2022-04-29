@@ -110,7 +110,7 @@ function EventItemEdit( {event}) {
               placeholder='Enter Score Points'
             />
           </div>
-         <button type='submit' className='addgrade_btn' onClick={onEditEvent}>
+         <button type='submit' className='addevent_btn'>
               Submit
         </button>
         </form>

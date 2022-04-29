@@ -79,11 +79,11 @@ function Events() {
           <h1 className='event-h1'>Events</h1>
         </section>
 
-        <button className='addevent'>
+        <button className='addevent_circle'>
           <a className='addbtn' href="#addevent-modal">+</a>
         </button>
 
-        <button className='addevent-btn' onClick={onEditEvents}> Edit Events </button> 
+        <button className='editevent_btn' onClick={onEditEvents}> Edit Events </button> 
          
         <section>
           <>

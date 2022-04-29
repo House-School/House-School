@@ -156,11 +156,9 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 }
 
 .course-a {
-    padding: 10px 10px 0;
     color:#302a92;
     font-weight: 700;
     font-size: 18px;
-    line-height: 135px;
     cursor: pointer;
 }
 
@@ -262,7 +260,7 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 .box {
   display: none;
   background: #ccc;
-  width: 200px;
+  width: 250px;
   height: 130px;
   border-radius: 20px;
   margin-right: 30px;
@@ -272,18 +270,34 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
   display: block;
 }
 
-input[type=checkbox] {
+.flex-container-editbtn {
+  padding: 60px 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-icon {
   vertical-align: middle;
   position: relative;
-  top: 105px;
-  right: 10px;
+  cursor: pointer;
+  color: #302a92;
+}
+
+input.coursecheckbox[type=checkbox] {
+  margin-right: 20px;
+  margin-left: 30px;
+  margin-top: 105px;
   cursor: pointer;
   transform: scale(2);
   z-index: 99;
+  opacity: 0;
 }
 
 .rename-btn {
   padding: 10px;
+  margin: 0px;
+  margin-top: -5px;
+  width: 80px;
   border: 1px solid #000;
   border-radius: 5px;
   background: #302a92;
@@ -295,4 +309,9 @@ input[type=checkbox] {
   appearance: button;
   display: flex;
   justify-content: center;
+}
+
+.flex-container-rename {
+  display: flex;
+  justify-content: space-evenly;
 }

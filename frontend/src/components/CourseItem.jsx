@@ -18,19 +18,19 @@ function CourseItem({ course }) {
     navigate('/'+ course._id)
   }
 
-  {/* const options = {
+  const deleteOptions = {
     render: (message, onConfirm, onCancel) => {
       return (
         <>
         <div className='confirmgrade'>
-        <h1 className='confirmgrade_h1'> Confirm Edit? </h1>
+        <h1 className='confirmgrade_h1'> Delete course? </h1>
         <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
         <button className='confirmgrade_btn' onClick={onCancel}> No </button>
         </div>
         </>
       );
     }
-  }; */}
+  };
   
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -45,15 +45,34 @@ function CourseItem({ course }) {
     }))
   }
 
+  const onDelete = async (e) => {
+    e.preventDefault()
+    const result = await confirm("Are you sure?", deleteOptions);
+    if (result) {
+      dispatch(deleteCourse(course._id))
+      return;
+    }
+    console.log("You click No!");
+  }
+
+  const onCancel = async (e) => {
+    e.preventDefault()
+    window.location.reload(false) /*{force reload window}*/
+  }
+
   return (
     <>
 
     <button className='course-btn'>
-      <button className='deletecourse' onClick={() => dispatch(deleteCourse(course._id))}>&times;</button>
-      <a className='course-a' onClick={onClick}>{course.text}</a>
+      <button className='deletecourse' onClick={onDelete}>&times;</button>
+      <div className='flex-container-editbtn'>
+        <a className='course-a' onClick={onClick}>{course.text}</a>
+        <label className='edit-icon'> <FaEdit/> </label>
+      </div>
+      
     </button>
 
-    <input id="trigger" type="checkbox"/>
+    <input id="trigger" type="checkbox" class='coursecheckbox'/>
     <div class="box">
       <div className="editform">
           <section className='course-form'>
@@ -68,7 +87,12 @@ function CourseItem({ course }) {
               />
             </div>
             <div className='form-group'>
-            <button className='rename-btn btn-block' onSubmit={onSubmit}>Rename</button>
+
+            <div className='flex-container-rename'>
+              <button className='rename-btn btn-block' onSubmit={onSubmit}>Rename</button>
+              <button className='rename-btn btn-block' onClick={onCancel}>Cancel</button>
+            </div>
+          
             </div>
           </form>
         </section>

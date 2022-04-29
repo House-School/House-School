@@ -80,10 +80,10 @@ function EventForm() {
               placeholder='Enter Score Points'
             />
           </div>
-          <button type='submit' className='addgrade_btn' onClick={onAddEvent}>
+          <button type='submit' className='addevent_btn' onClick={onAddEvent}>
             Confirm
           </button>
-          <button className='addgrade_btn'>
+          <button className='addevent_btn'>
             <a className='cancelbtn' href=""> Cancel </a>
           </button>
         </form>
