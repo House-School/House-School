@@ -12,6 +12,23 @@
   margin-bottom: 10px;
 }
 
+.dash-h2 {
+  color:#302a92;
+  font-weight: 600;
+  font-size: 30px;
+  text-align: left;
+}
+
+.dash-a {
+  color:#302a92;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: right;
+  align-self: center;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .flex-container {
     display: flex;
 }
@@ -110,4 +127,82 @@
   .heading p {
     font-size: 1.5rem;
   }
+}
+
+.flex-container-dash {
+  display: flex;
+  height: 400px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px 30px;
+  overflow: auto;
+  position: relative;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.flex-container-dash-subheading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flex-container-dash-courses {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+  align-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.flex-container-dash-content {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.flex-container-dash-tasks {
+  display: flex;
+  height: 180px;
+  width: 47%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.flex-container-dash-events {
+  display: flex;
+  height: 190px;
+  width: 47%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.flex-container-dash-event-content {
+  display: flex;
+  width: 100%;
+  height: 120px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: flex-start;
+  align-content: flex-start;
 }

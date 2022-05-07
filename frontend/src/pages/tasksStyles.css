@@ -39,6 +39,7 @@
   border-bottom:solid #9490ddd3;
   text-align: left;
   line-height: 35px;
+  width: 100%;
 
   /* make the list items unselectable */
   -webkit-user-select: none;
