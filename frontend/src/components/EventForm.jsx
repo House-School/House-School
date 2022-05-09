@@ -10,15 +10,16 @@ function EventForm() {
 
     var initFormData = {
         course: '',
-        eventName: '',
-        deadline: ''
+        title: '',
+        start: '',
+        end: '',
     }
     const [FormData, setFormData] = useState(initFormData)
     const { courses } = useSelector(
       (state) => state.courses
     )
 
-    var { course, eventName, deadline } = FormData
+    var { course, title, start, end } = FormData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -29,8 +30,7 @@ function EventForm() {
 
     const onSubmit = async (e) => {
       e.preventDefault()
-      console.log(course)
-      dispatch(createEvent( { course, eventName, deadline }))
+      dispatch(createEvent( {course, title, start, end }))
     }
 
     const onAddEvent = () => {
@@ -56,28 +56,40 @@ function EventForm() {
           <div className='form-group'>
             <input
               type='text'
-              id='requirement'
-              name='requirement'
-              value={eventName}
+              id='title'
+              name='title'
+              value={title}
               onChange={(e) => setFormData({
                 ...FormData,
-                eventName: e.target.value,
+                title: e.target.value,
               })}
               placeholder='Enter name of the event'
             />  
           </div>
           <div className='form-group'>
             <input
-              type='date'
+              type='datetime-local'
               className='form-control'
-              id='score'
-              name='score'
-              value={deadline}
+              id='start'
+              name='start'
+              value={start}
               onChange={(e) => setFormData({
                 ...FormData,
-                deadline: e.target.value,
+                start: e.target.value,
               })}
-              placeholder='Enter Score Points'
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='datetime-local'
+              className='form-control'
+              id='end'
+              name='end'
+              value={end}
+              onChange={(e) => setFormData({
+                ...FormData,
+                end: e.target.value,
+              })}
             />
           </div>
           <button type='submit' className='addevent_btn' onClick={onAddEvent}>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { updateEvent } from '../features/events/eventSlice'
+import { updateEvent, deleteEvent } from '../features/events/eventSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
 import { useNavigate } from 'react-router-dom'
@@ -10,16 +10,17 @@ import '../pages/eventsStyles.css'
 function EventItemEdit( {event}) {
 
     var initFormData = {
-        course: '',
-        eventName: '',
-        deadline: ''
+      course: '',
+      title: '',
+      start: '',
+      end: '',
     }
     const [FormData, setFormData] = useState(initFormData)
     const { courses } = useSelector(
       (state) => state.courses
     )
     const navigate = useNavigate()
-    var { course, eventName, deadline } = FormData
+    var { course, title, start, end } = FormData
     const mongoose = require('mongoose');
 
     const dispatch = useDispatch()
@@ -42,6 +43,20 @@ function EventItemEdit( {event}) {
       }
     };
 
+    const deleteOptions = {
+      render: (message, onConfirm, onCancel) => {
+        return (
+          <>
+          <div className='confirmgrade'>
+          <h1 className='confirmgrade_h1'> Delete event? </h1>
+          <button className='confirmgrade_btn' onClick={onConfirm}> Yes </button>
+          <button className='confirmgrade_btn' onClick={onCancel}> No </button>
+          </div>
+          </>
+        );
+      }
+    };
+
     const onEditEvent = () => {
       navigate('/events/edit')
     }
@@ -53,8 +68,20 @@ function EventItemEdit( {event}) {
       if (result) {
         course = document.getElementById("dropdown-course");
         course = mongoose.Types.ObjectId(course.value)
-        console.log(course)
-        dispatch(updateEvent( {id: event._id, eventData: {course, eventName, deadline }}))
+        dispatch(updateEvent( {id: event._id, eventData: {course, title, start, end }}))
+        window.location.reload(false) /*{force reload window}*/
+        return;
+      }
+      else {
+        window.location.reload(false) /*{force reload window}*/
+      }
+    }
+
+    const onDelete = async (e) => {
+      e.preventDefault()
+      const result = await confirm("Are you sure?", deleteOptions);
+      if (result) {
+        dispatch(deleteEvent(event._id))
         window.location.reload(false) /*{force reload window}*/
         return;
       }
@@ -66,9 +93,9 @@ function EventItemEdit( {event}) {
     return (
         <>
         <section className='grade-form'>
-        <p className='event-p'>Event: {event.eventName} </p>
-        <p className='event-p'>Course: {event.course} </p>
-        <p className='event-p'>Date: {event.deadline} </p>
+        <p className='event-p'>Event: {event.title} [{event.course}]</p>
+        <p className='event-p'>Start: {event.start} </p>
+        <p className='event-p'>End: {event.end} </p>
         <form onSubmit={onSubmit}>
         <div className='form-group'>
             <select
@@ -86,33 +113,46 @@ function EventItemEdit( {event}) {
           <div className='form-group'>
             <input
               type='text'
-              id='requirement'
-              name='requirement'
-              value={eventName}
+              id='title'
+              name='title'
+              value={title}
               onChange={(e) => setFormData({
                 ...FormData,
-                eventName: e.target.value,
+                title: e.target.value,
               })}
               placeholder='Enter name of the event'
             />  
           </div>
           <div className='form-group'>
             <input
-              type='date'
+              type='datetime-local'
               className='form-control'
-              id='score'
-              name='score'
-              value={deadline}
+              id='start'
+              name='start'
+              value={start}
               onChange={(e) => setFormData({
                 ...FormData,
-                deadline: e.target.value,
+                start: e.target.value,
               })}
-              placeholder='Enter Score Points'
+            />
+          </div>
+          <div className='form-group'>
+            <input
+              type='datetime-local'
+              className='form-control'
+              id='end'
+              name='end'
+              value={end}
+              onChange={(e) => setFormData({
+                ...FormData,
+                end: e.target.value,
+              })}
             />
           </div>
          <button type='submit' className='addevent_btn'>
               Submit
         </button>
+        <button className='deleteevent_btn' onClick={onDelete}>Delete</button>
         </form>
       </section>
       </>

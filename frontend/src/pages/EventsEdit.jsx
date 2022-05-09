@@ -7,7 +7,7 @@ import { getEvents, reset } from '../features/events/eventSlice'
 import './eventsStyles.css'
 import './sidemenuStyles.css'
 
-function Events() {
+function EventsEdit() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -85,8 +85,6 @@ function Events() {
             
             {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
             https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div  */}
-              <div className='flex-container-tasks-fadetop'></div>
-              <div className='flex-container-tasks-fadebottom'></div>
             </>
          </section>
       </div>  
@@ -95,4 +93,4 @@ function Events() {
   )
 }
 
-export default Events
+export default EventsEdit

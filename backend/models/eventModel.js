@@ -12,11 +12,15 @@ const eventSchema = mongoose.Schema(
             required: true, 
             ref: 'Course',
         }],
-        eventName: {
+        title: {
             type: String,
             required: [true, 'Please add event name'],
         },
-        deadline: {
+        start: {
+            type: Date,
+            required: true,
+        },
+        end: {
             type: Date,
             required: true,
         }

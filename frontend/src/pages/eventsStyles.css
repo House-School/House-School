@@ -117,17 +117,24 @@
     transform: scale(0.98);
 }
 
-.deleteevent{
-    padding-left: 15px;
-    padding-right: 20px;
-    border: 0px;
+.deleteevent_btn {
+    padding: 0px;
+    width: 140px;
+    border: 1px solid #000;
     border-radius: 5px;
-    background: #ffffff00;
-    color: #302a92;
-    font-size: 30px;
+    background: #302a92;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
-    appearance: button;
-    display: flex;
+    text-align: center;
+    height: 45px;
+    margin-left: 1%;
+    margin-bottom: 10px;
+}
+
+.deleteevent_btn:hover {
+    transform: scale(0.98);
 }
 
 .cancelbtn {
@@ -145,6 +152,12 @@
     border-bottom: solid 3px #302a92;
 }
 
+.calendar {
+    width: 85%; 
+    display: inline-block;
+    padding-left: 15%;
+}
+
 .flex-container-events {
     height: 445px;
     display: flex;
@@ -155,6 +168,7 @@
     position: relative;
     justify-content: flex-start;
     align-content: flex-start;
+    color:#302a92;
 }
 
 /* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
@@ -192,31 +206,35 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 }
 
 .event-modal:target {
-visibility: visible;
-opacity: 1;
+    visibility: visible;
+    opacity: 1;
+    z-index: 2;
 }
 
 .event-modal-content {
-border-radius: 20px;
-position: relative;
-width: 500px;
-max-width: 90%;
-background: #fff;
-padding-top: 1em;
-padding-bottom: 1em;
+    border-radius: 20px;
+    position: relative;
+    width: 500px;
+    max-width: 50%;
+    background: #fff;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    z-index: 2;
 }
 
 .event-modal-close {
-position: absolute;
-top: 10px;
-right: 20px;
-color: #585858;
-text-decoration: none;
-font-size: 200%;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #585858;
+    text-decoration: none;
+    font-size: 200%;
+    z-index: 2;
 }
 
 .event-form {
     width: 80%;
     margin: 0 auto;
     padding-top: 20px;
+    z-index: 2;
 }

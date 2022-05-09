@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import EventForm from '../components/EventForm'
@@ -6,6 +6,12 @@ import EventItem from '../components/EventItem'
 import { getEvents, reset } from '../features/events/eventSlice'
 import './eventsStyles.css'
 import './sidemenuStyles.css'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction';
+import "@fullcalendar/daygrid/main.css";
+import "@fullcalendar/timegrid/main.css";
 
 function Events() {
   const navigate = useNavigate()
@@ -15,6 +21,7 @@ function Events() {
   const { events, isLoading, isError, message } = useSelector(
     (state) => state.events
   )
+
   const { courses } = useSelector(
     (state) => state.courses
   )
@@ -61,6 +68,7 @@ function Events() {
     navigate('/events/edit')
   }
 
+
   return (
     <>
     <div className='flex-container'>
@@ -79,25 +87,28 @@ function Events() {
           <h1 className='event-h1'>Events</h1>
         </section>
 
-        <button className='addevent_circle'>
-          <a className='addbtn' href="#addevent-modal">+</a>
-        </button>
+      <button className='addevent_circle'>
+        <a className='addbtn' href="#addevent-modal">+</a>
+      </button>
 
-        <button className='editevent_btn' onClick={onEditEvents}> Edit Events </button> 
+      <button className='editevent_btn' onClick={onEditEvents}> Edit Events </button> 
          
         <section>
           <>
-            <div className="flex-container-events">
-                {events.map((event) => (
-                    <EventItem key={event._id} event={event} />
-                ))}
+            <div className = "flex-container-events">
+              <div className ="calendar">
+              <FullCalendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              showNonCurrentDates = {false}
+              headerToolbar={{
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+              }}
+              events={{events}}
+              />
+              </div>     
             </div>
-            
-
-            {/* Based on  https://jsfiddle.net/hP3wu/12/ from answer posted in a Stackoverflow question: 
-            https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div  */}
-            <div className='flex-container-events-fadetop'></div>
-            <div className='flex-container-events-fadebottom'></div>
             </>
         </section>
 
@@ -109,7 +120,7 @@ function Events() {
               <a href="" className="event-modal-close">&times;</a>
           </div>
         </div>
-        
+
       </div>    
     </div>  
     </>
