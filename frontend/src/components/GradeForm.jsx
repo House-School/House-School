@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createGrade } from '../features/grades/gradeSlice'
-import { useDispatch } from 'react-redux'
+import { getCourses} from '../features/courses/courseSlice'
+import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
 
@@ -10,16 +11,23 @@ function GradeForm() {
     var initFormData = {
       course: '',
       requirement: '',
-      score: 0,
-      total: 0,
-      percentageScore: 0,
-      percentageTotal: 0,
+      score: '',
+      total: '',
+      percentageScore: '',
+      percentageTotal: '',
     }
     const [FormData, setFormData] = useState(initFormData)
+    const { courses } = useSelector(
+      (state) => state.courses
+    )
 
     var { course, requirement, score , total, percentageScore, percentageTotal } = FormData
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      dispatch(getCourses())
+    }, [dispatch])
 
     const options = {
       render: (message, onConfirm, onCancel) => {
@@ -53,19 +61,19 @@ function GradeForm() {
     return (
         <section className='grade-form'>
         <form onSubmit={onSubmit}>
-           <div className='form-group'>
-            <input
-              type='text'
-              name='course'
-              id='course'
-              value={course}
+          <div className='form-group'>
+            <select
+              id = "dropdown-course"
               onChange={(e) => setFormData({
                 ...FormData,
                 course: e.target.value,
-              })}
-              placeholder='Enter Course'
-            />
-          </div>  
+              })}>
+            <option> Select a course </option>
+            {courses.map((course) => (
+              <option key={course._id} value={course.text}> {course.text} </option>
+            ))}
+            </select>
+          </div> 
           <div className='form-group'>
             <input
               type='text'

@@ -1,7 +1,8 @@
-import { useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { deleteGrade, updateGrade } from '../features/grades/gradeSlice'
+import { getCourses} from '../features/courses/courseSlice'
+import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
 
@@ -9,16 +10,24 @@ function GradeItem({ grade }) {
   var initFormData = {
     course: '',
     requirement: '',
-    score: 0,
-    total: 0,
-    percentageScore: 0,
-    percentageTotal: 0,
+    score: '',
+    total: '',
+    percentageScore: '',
+    percentageTotal: '',
   }
   const [gradeData, setGradeData]  = useState(initFormData)
   var { course, requirement, score , total, percentageScore, percentageTotal } = gradeData
 
+  const { courses } = useSelector(
+    (state) => state.courses
+  )
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(getCourses())
+  }, [dispatch])
 
   const editOptions = {
     render: (message, onConfirm, onCancel) => {
@@ -86,15 +95,18 @@ function GradeItem({ grade }) {
 
           <form onSubmit={onSubmit}>
             <div className='form-group'>
-              <input
-                type='gradesedi-text'
-                name='course'
-                id='course'
-                value={course}
-                onChange={onChange}
-                placeholder='Enter Course'
-              />
-            </div>  
+              <select
+                id = "dropdown-course"
+                onChange={(e) => setGradeData({
+                  ...gradeData,
+                  course: e.target.value,
+                })}>
+              <option> Select a course </option>
+              {courses.map((course) => (
+                <option key={course._id} value={course.text}> {course.text} </option>
+              ))}
+              </select>
+            </div> 
             <div className='form-group'>
               <input
                 type='gradesedit-text'

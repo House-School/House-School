@@ -56,18 +56,11 @@ function EventItemEdit( {event}) {
         );
       }
     };
-
-    const onEditEvent = () => {
-      navigate('/events/edit')
-    }
     
-
     const onSubmit = async (e) => {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
       if (result) {
-        course = document.getElementById("dropdown-course");
-        course = mongoose.Types.ObjectId(course.value)
         dispatch(updateEvent( {id: event._id, eventData: {course, title, start, end }}))
         window.location.reload(false) /*{force reload window}*/
         return;
@@ -104,10 +97,11 @@ function EventItemEdit( {event}) {
                 ...FormData,
                 course: e.target.value,
               })}>
+            <option> Select a course </option>
             {courses.map((course) => (
-              <option key={course._id} value={course._id}> {course.text} </option>
+              <option key={course._id} value={course.text}> {course.text} </option>
             ))}
-              <option> Select a course </option>
+            
             </select>
           </div>
           <div className='form-group'>

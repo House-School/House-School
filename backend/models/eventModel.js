@@ -8,7 +8,7 @@ const eventSchema = mongoose.Schema(
             ref: 'User',
         },
         course:[{
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             required: true, 
             ref: 'Course',
         }],
@@ -22,7 +22,6 @@ const eventSchema = mongoose.Schema(
         },
         end: {
             type: Date,
-            required: true,
         }
     },
     {
