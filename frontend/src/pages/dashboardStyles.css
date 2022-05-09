@@ -205,4 +205,12 @@
   position: relative;
   justify-content: flex-start;
   align-content: flex-start;
+  overflow: overlay
+}
+
+.dash-calendar {
+  width: 100%;
+  display: inline-block;
+  color: #302A92;
+  margin-top: -24px;
 }

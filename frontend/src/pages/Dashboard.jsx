@@ -7,6 +7,14 @@ import TaskItem from '../components/TaskItem'
 import { getTasks, reset as taskReset } from '../features/tasks/taskSlice'
 import EventItem from '../components/EventItem'
 import { getEvents, reset as eventReset } from '../features/events/eventSlice'
+import FullCalendar from '@fullcalendar/react'
+import listPlugin from '@fullcalendar/list';
+import "@fullcalendar/list/main.css";
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction';
+import "@fullcalendar/daygrid/main.css";
+import "@fullcalendar/timegrid/main.css";
 import Spinner from '../components/Spinner'
 import './dashboardStyles.css'
 import './sidemenuStyles.css'
@@ -129,7 +137,21 @@ function Dashboard() {
             </section>
 
             <section className='flex-container-dash-event-content'>
-
+              <>
+              <div className ="dash-calendar">
+                <FullCalendar
+                plugins={[listPlugin, dayGridPlugin, interactionPlugin]}
+                initialView= 'listDay'
+                showNonCurrentDates = {false}
+                headerToolbar={{
+                  left: "",
+                  center: "",
+                  right: ""
+                }}
+                events={{events}}
+                />
+              </div>
+              </>
             </section>
           </section>
 
