@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import EventForm from '../components/EventForm'
 import EventItem from '../components/EventItem'
 import { getEvents, reset } from '../features/events/eventSlice'
+import { getCourses } from '../features/courses/courseSlice'
 import './eventsStyles.css'
 import './sidemenuStyles.css'
 import FullCalendar from '@fullcalendar/react'
@@ -44,6 +45,10 @@ function Events() {
     dispatch(getEvents())
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getCourses())
+  }, [dispatch])
+
   const onDashboard = () => {
     navigate('/')
   }
@@ -68,6 +73,21 @@ function Events() {
     navigate('/events/edit')
   }
 
+  var courseFilter = {course: ''}
+  const [filterData, setFilterData] = useState(courseFilter)
+  var { course } = filterData
+
+  const filterEvents = events.filter((event) => {
+    if (course === "Filter by course") {
+      return event
+    }
+
+    if (!course) {
+      return event
+    }
+
+    return event.course == course
+  })
 
   return (
     <>
@@ -87,12 +107,22 @@ function Events() {
           <h1 className='event-h1'>Events</h1>
         </section>
 
-      <button className='addevent_circle'>
-        <a className='addbtn' href="#addevent-modal">+</a>
-      </button>
+        <div className='flex-container-filter'>
+          <div className='form-group'>
+            <select
+              id = "dropdown-coursefilter"
+              onChange={(e) => setFilterData({
+                ...filterData,
+                course: e.target.value,
+              })}>
+            <option> Filter by course </option>
+            {courses.map((course) => (
+              <option key={course._id} value={course.text}> {course.text} </option>
+            ))}
+            </select>
+          </div>
+        </div>
 
-      <button className='editevent_btn' onClick={onEditEvents}> Edit Events </button> 
-         
         <section>
           <>
             <div className = "flex-container-events">
@@ -103,13 +133,21 @@ function Events() {
               headerToolbar={{
                 left: "prev,next today",
                 center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                right: "dayGridMonth,timeGridWeek,timeGridDay"
               }}
-              events={{events}}
+              events={filterEvents}
+              height={400}
               />
               </div>     
             </div>
             </>
+        </section>
+
+        <section className='bottom-buttons-event'>
+          <button className='event_btn'>
+            <a className='addbtn' href="#addevent-modal">+ New Event</a>
+          </button>
+          <button className='event_btn' onClick={onEditEvents}> Edit Events </button> 
         </section>
 
         {/* Based on https://codepen.io/denic/pen/ZEbKgPp (by Marko Denic) */}
@@ -120,7 +158,6 @@ function Events() {
               <a href="" className="event-modal-close">&times;</a>
           </div>
         </div>
-
       </div>    
     </div>  
     </>

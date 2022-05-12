@@ -31,6 +31,7 @@ function EventForm() {
     const onSubmit = async (e) => {
       e.preventDefault()
       dispatch(createEvent( {course, title, start, end }))
+      window.location.reload(false) /*{force reload window}*/
     }
 
     const onAddEvent = () => {

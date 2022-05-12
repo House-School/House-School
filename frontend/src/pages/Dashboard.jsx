@@ -11,7 +11,6 @@ import FullCalendar from '@fullcalendar/react'
 import listPlugin from '@fullcalendar/list';
 import "@fullcalendar/list/main.css";
 import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";

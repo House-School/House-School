@@ -87,6 +87,7 @@ function EventsEdit() {
             https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div  */}
             </>
          </section>
+         <button className='backevent_btn' onClick={onCalendar}>Back to Calendar</button>
       </div>  
     </div>  
     </>
