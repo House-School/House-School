@@ -11,6 +11,7 @@ function EventItemEdit( {event}) {
 
     var initFormData = {
       course: '',
+      coursename: '',
       title: '',
       start: '',
       end: '',
@@ -20,7 +21,7 @@ function EventItemEdit( {event}) {
       (state) => state.courses
     )
     const navigate = useNavigate()
-    var { course, title, start, end } = FormData
+    var { course, coursename, title, start, end } = FormData
     const mongoose = require('mongoose');
 
     const dispatch = useDispatch()
@@ -61,7 +62,9 @@ function EventItemEdit( {event}) {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
       if (result) {
-        dispatch(updateEvent( {id: event._id, eventData: {course, title, start, end }}))
+        var selected = document.getElementById('dropdown-course');
+        coursename = selected.options[selected.selectedIndex].text;
+        dispatch(updateEvent( {id: event._id, eventData: {course, coursename, title, start, end }}))
         window.location.reload(false) /*{force reload window}*/
         return;
       }
@@ -86,7 +89,7 @@ function EventItemEdit( {event}) {
     return (
         <>
         <section className='grade-form'>
-        <p className='event-p'>Event: {event.title} [{event.course}]</p>
+        <p className='event-p'>Event: {event.title} [{event.coursename}]</p>
         <p className='event-p'>Start: {event.start} </p>
         <p className='event-p'>End: {event.end} </p>
         <form onSubmit={onSubmit}>
@@ -99,7 +102,7 @@ function EventItemEdit( {event}) {
               })}>
             <option> Select a course </option>
             {courses.map((course) => (
-              <option key={course._id} value={course.text}> {course.text} </option>
+              <option key={course._id} value={course._id}> {course.text} </option>
             ))}
             
             </select>

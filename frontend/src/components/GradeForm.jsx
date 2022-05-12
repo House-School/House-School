@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { createGrade } from '../features/grades/gradeSlice'
-import { getCourses} from '../features/courses/courseSlice'
+import { getCourses, updateCourse} from '../features/courses/courseSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
@@ -10,6 +10,7 @@ function GradeForm() {
 
     var initFormData = {
       course: '',
+      coursename: '',
       requirement: '',
       score: '',
       total: '',
@@ -21,7 +22,7 @@ function GradeForm() {
       (state) => state.courses
     )
 
-    var { course, requirement, score , total, percentageScore, percentageTotal } = FormData
+    var { course, coursename, requirement, score , total, percentageScore, percentageTotal } = FormData
 
     const dispatch = useDispatch()
 
@@ -50,7 +51,20 @@ function GradeForm() {
       window.location.href = 'http://localhost:3000/grades'
       if (result) {
         percentageScore = (score/total) * percentageTotal 
-        dispatch(createGrade( { course, requirement, score , total, percentageScore, percentageTotal} ))
+        var selected = document.getElementById('dropdown-course');
+        coursename = selected.options[selected.selectedIndex].text;
+
+        for (let i = 0; i < courses.length; i++) { 
+          if (coursename == courses[i].text) {
+            var totalGrade = courses[i].totalGrade + percentageScore;
+            var text = courses[i].text
+            var gradeCalc = courses[i].gradeCalc;
+          }
+        }
+        if (gradeCalc === "true") {
+          dispatch(createGrade( { course, coursename, requirement, score , total, percentageScore, percentageTotal} ))
+          dispatch(updateCourse({id: course, courseData: { text,  totalGrade, gradeCalc }}))
+        }
         return;
       }
       else {
@@ -70,7 +84,7 @@ function GradeForm() {
               })}>
             <option> Select a course </option>
             {courses.map((course) => (
-              <option key={course._id} value={course.text}> {course.text} </option>
+              <option key={course._id} value={course._id}> {course.text} </option>
             ))}
             </select>
           </div> 

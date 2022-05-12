@@ -10,7 +10,15 @@ const courseSchema = mongoose.Schema(
         text: {
             type: String,
             required: [true, 'Please add course name'],
-        }
+        },
+        totalGrade: {
+            type: Number,
+            required: true,
+        },
+        gradeCalc: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,

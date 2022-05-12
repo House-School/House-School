@@ -12,6 +12,11 @@ const eventSchema = mongoose.Schema(
             required: true, 
             ref: 'Course',
         },
+        coursename:{
+            type: String,
+            required: true, 
+            ref: 'Course',
+        },
         title: {
             type: String,
             required: [true, 'Please add event name'],

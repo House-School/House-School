@@ -10,6 +10,7 @@ function EventForm() {
 
     var initFormData = {
         course: '',
+        coursename: '',
         title: '',
         start: '',
         end: '',
@@ -19,7 +20,7 @@ function EventForm() {
       (state) => state.courses
     )
 
-    var { course, title, start, end } = FormData
+    var { course, coursename, title, start, end } = FormData
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -30,7 +31,9 @@ function EventForm() {
 
     const onSubmit = async (e) => {
       e.preventDefault()
-      dispatch(createEvent( {course, title, start, end }))
+      var selected = document.getElementById('dropdown-course');
+      coursename = selected.options[selected.selectedIndex].text;
+      dispatch(createEvent( {course, coursename, title, start, end }))
       window.location.reload(false) /*{force reload window}*/
     }
 
@@ -50,7 +53,7 @@ function EventForm() {
               })}>
             <option> Select a course </option>
             {courses.map((course) => (
-              <option key={course._id} value={course.text}> {course.text} </option>
+              <option key={course._id} value={course._id}> {course.text} </option>
             ))}
             </select>
           </div>

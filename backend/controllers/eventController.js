@@ -30,10 +30,11 @@ const setEvent = asyncHandler(async (req, res) => {
       throw new Error('User not found')
     }
 
-    const { course, title, start, end } = req.body
+    const { course, coursename, title, start, end } = req.body
   
     const event = await Event.create({
       course,
+      coursename,
       title,
       start,
       end,

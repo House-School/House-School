@@ -9,7 +9,6 @@ import Register from './pages/Register'
 import Courses from './pages/Courses'
 import Tasks from './pages/Tasks'
 import Grades from './pages/Grades'
-import GradesCourse from './pages/GradesCourse'
 import GradesAdd from './pages/GradesAdd'
 import GradesEdit from './pages/GradesEdit'
 import Events from './pages/Events'
@@ -28,7 +27,6 @@ function App() {
             <Route path='/courses' element={<Courses />} />
             <Route path='/tasks' element={<Tasks />} />
             <Route path='/grades' element={<Grades />} />
-            <Route path='/grades/course' element={<GradesCourse />} /> // Route to add Course in Grade Calculator
             <Route path='/grades/add' element={<GradesAdd />} /> // Route to Add Grades
             <Route path='/grades/edit' element={<GradesEdit />} /> // Route to Edit Grades
             <Route path='/events' element={<Events />} />

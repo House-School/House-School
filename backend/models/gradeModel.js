@@ -8,9 +8,13 @@ const gradeSchema = mongoose.Schema(
             ref: 'User',
         },
         course: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: [true, 'Please add name of Course'],
-        },     
+        }, 
+        coursename: {
+            type: String,
+            ref: 'Course',
+        },       
         requirement: {
             type: String,
         },

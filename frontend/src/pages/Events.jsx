@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import EventForm from '../components/EventForm'
-import EventItem from '../components/EventItem'
 import { getEvents, reset } from '../features/events/eventSlice'
 import { getCourses } from '../features/courses/courseSlice'
 import './eventsStyles.css'
@@ -19,7 +18,7 @@ function Events() {
   const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state.auth)
-  const { events, isLoading, isError, message } = useSelector(
+  const { events, isError, message } = useSelector(
     (state) => state.events
   )
 
@@ -86,7 +85,7 @@ function Events() {
       return event
     }
 
-    return event.course == course
+    return event.coursename == course
   })
 
   return (

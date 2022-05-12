@@ -5,6 +5,7 @@ import './dashboardStyles.css'
 import './sidemenuStyles.css'
 import './gradesStyles.css'
 import {getGrades, reset} from '../features/grades/gradeSlice'
+import { getCourses } from '../features/courses/courseSlice'
 
 
 function Grades() {
@@ -15,6 +16,9 @@ function Grades() {
   const { grades, isError, message } = useSelector(
       (state) => state.grades
       )
+  const { courses } = useSelector(
+    (state) => state.courses
+    )
 
   useEffect(() => {
     if(isError) {
@@ -34,6 +38,10 @@ function Grades() {
     dispatch(getGrades())
   }, [dispatch])
 
+  useEffect(() => {
+    dispatch(getCourses())
+  }, [dispatch])
+
   const onDashboard = () => {
     navigate('/')
   }
@@ -44,10 +52,6 @@ function Grades() {
 
   const onTasks = () => {
     navigate('/tasks')
-  }
-
-  const onAddCourseCalc = () => {
-    navigate('/grades/course')
   }
 
   const onAddGrades = () => {
@@ -62,36 +66,8 @@ function Grades() {
     navigate('/events')
   }
 
-  let coursesGrades = []
-  let coursesTotal = []
-  let coursesNames = []
-
-  function InitCoursesTotal() { //initializes array of course totals to 0
-    for (let i = 0; i < coursesNames.length; i++) { 
-      coursesTotal[i] = 0
-    }
-    return 0
-  }
-
-  function IterGradeCourse(arr) { //calculates the total per course
-    for (let i = 0; i < coursesNames.length; i++) { 
-      if (arr[0] === coursesNames[i]) {
-        coursesTotal[i] = coursesTotal[i] + arr[1]
-      }
-    }
-    return 0
-  }
-
   return (
-    <>
-    <section className='hide'>
-      {grades.map((grade) => (
-          coursesGrades.push([grade.course,grade.percentageScore]),
-          coursesNames.push(grade.course),
-          coursesNames = [...new Set(coursesNames)]
-      ))}
-    </section>
-    
+    <>  
     <div className='flex-container'>
       <div className='side-menu'>
           <button className='side-menu-item' onClick={onDashboard}>Dashboard</button>
@@ -118,17 +94,13 @@ function Grades() {
 
               <div className='flex-container-gradeitems'>
                 <ul>
-                  {coursesNames.map((item,index) => (
-                      InitCoursesTotal(),
-                      <li className = "grade-name-li" key={index}>{item}</li>
-                  ))}
-                  {coursesGrades.map((item,index) => (
-                      IterGradeCourse(item)
+                  {courses.map((item,index) => (
+                      <li className = "grade-name-li" key={index}>{item.text}</li>
                   ))}
                 </ul>    
                 <ul>
-                  {coursesTotal.map((item,index) => (
-                      <li className = "grade-total-li" key={index}>{item}</li>
+                  {courses.map((item,index) => (
+                      <li className = "grade-total-li" key={index}>{item.totalGrade}</li>
                   ))}
                 </ul> 
               </div>  
@@ -136,7 +108,6 @@ function Grades() {
 
             <div className='flex-container-grades-fadebottom'>
               <section className='bottom-buttons'>
-                <button className='addgrade_btn' onClick={onAddCourseCalc}> Add Course </button>
                 <button className='addgrade_btn' onClick={onAddGrades}> Add Grades </button>
                 <button className='addgrade_btn' onClick={onEditGrades}> Edit/Delete Grades </button>
               </section>

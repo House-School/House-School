@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { deleteGrade, updateGrade } from '../features/grades/gradeSlice'
-import { getCourses} from '../features/courses/courseSlice'
+import { getCourses, updateCourse } from '../features/courses/courseSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { confirm } from "react-confirm-box";
 import '../pages/gradesStyles.css'
 
-function GradeItem({ grade }) {
+function GradeItemEdit({ grade }) {
   var initFormData = {
     course: '',
+    coursename: '',
     requirement: '',
     score: '',
     total: '',
@@ -16,7 +17,7 @@ function GradeItem({ grade }) {
     percentageTotal: '',
   }
   const [gradeData, setGradeData]  = useState(initFormData)
-  var { course, requirement, score , total, percentageScore, percentageTotal } = gradeData
+  var { course, coursename, requirement, score , total, percentageScore, percentageTotal } = gradeData
 
   const { courses } = useSelector(
     (state) => state.courses
@@ -62,7 +63,17 @@ function GradeItem({ grade }) {
     const result = await confirm("Are you sure?", editOptions);
     if (result) {
       percentageScore = (score/total) * percentageTotal 
-      dispatch(updateGrade( {id: grade._id, gradeData: { course, requirement, score , total, percentageScore, percentageTotal }} ))
+      for (let i = 0; i < courses.length; i++) { 
+        if (grade.coursename == courses[i].text) {
+          var totalGrade = courses[i].totalGrade - grade.percentageScore + percentageScore;
+          var text = courses[i].text
+          var gradeCalc = courses[i].gradeCalc
+          dispatch(updateCourse({id: courses[i]._id, courseData: { text,  totalGrade, gradeCalc }}))
+        }
+      }
+      course = grade.course;
+      coursename = grade.coursename;
+      dispatch(updateGrade( {id: grade._id, gradeData: { course, coursename, requirement, score , total, percentageScore, percentageTotal }} ))
       window.location.reload(false) /*{force reload window}*/
       return;
     }
@@ -73,10 +84,19 @@ function GradeItem({ grade }) {
     e.preventDefault()
     const result = await confirm("Are you sure?", deleteOptions);
     if (result) {
+      e.preventDefault()
+      percentageScore = (score/total) * percentageTotal
+      for (let i = 0; i < courses.length; i++) { 
+        if (grade.coursename == courses[i].text) {
+          var totalGrade = courses[i].totalGrade - grade.percentageScore;
+          var text = courses[i].text
+          var gradeCalc = courses[i].gradeCalc
+          dispatch(updateCourse({id: courses[i]._id, courseData: { text,  totalGrade, gradeCalc }}))
+        }
+      }
       dispatch(deleteGrade(grade._id))
-      return;
+      window.location.reload(false) /*{force reload window}*/
     }
-    console.log("You click No!");
   }
 
   const onChange = (e) => {
@@ -89,24 +109,11 @@ function GradeItem({ grade }) {
   return (
     <>
       <section className='grade-form'>
-            <label className="grade-h1"> {grade.course}: {grade.requirement}  </label>
+            <label className="grade-h1"> {grade.coursename}: {grade.requirement}  </label>
             <p className="grade-h1"> {grade.score}/{grade.total}</p> 
             <p className="grade-h1"> {grade.percentageScore}% out of {grade.percentageTotal}%</p> 
 
           <form onSubmit={onSubmit}>
-            <div className='form-group'>
-              <select
-                id = "dropdown-course"
-                onChange={(e) => setGradeData({
-                  ...gradeData,
-                  course: e.target.value,
-                })}>
-              <option> Select a course </option>
-              {courses.map((course) => (
-                <option key={course._id} value={course.text}> {course.text} </option>
-              ))}
-              </select>
-            </div> 
             <div className='form-group'>
               <input
                 type='gradesedit-text'
@@ -163,4 +170,4 @@ function GradeItem({ grade }) {
   )
 }
 
-export default GradeItem
+export default GradeItemEdit

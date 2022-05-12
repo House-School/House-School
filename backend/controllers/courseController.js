@@ -21,9 +21,13 @@ const setCourse = asyncHandler(async (req, res) => {
       throw new Error('Please add a text field')
     }
   
+    const { text, totalGrade, gradeCalc } = req.body
+
     const course = await Course.create({
+      text,
+      totalGrade,
+      gradeCalc,
       user: req.user.id,
-      text: req.body.text,
     })
 
     res.status(200).json(course)

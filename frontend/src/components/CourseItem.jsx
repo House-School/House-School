@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteCourse, updateCourse } from '../features/courses/courseSlice'
+import { getGrades, updateGrade, deleteGrade } from '../features/grades/gradeSlice'
+import { getEvents, updateEvent, deleteEvent } from '../features/events/eventSlice'
 import { useNavigate } from 'react-router-dom'
 import { confirm } from "react-confirm-box";
 import { FaEdit } from 'react-icons/fa';
@@ -9,14 +11,29 @@ import '../pages/coursesStyles.css'
 function CourseItem({ course }) {
   const [courseData, setCourseData] = useState('')
   const {text} = courseData
+  const { grades, isError, message } = useSelector(
+    (state) => state.grades
+    )
+  const { events } = useSelector(
+    (state) => state.events
+  )
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const courseid = course._id;
 
   const onClick = (e) => {
     e.preventDefault()
     navigate('/'+ course._id)
   }
+
+  useEffect(() => {
+    dispatch(getGrades())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getEvents())
+  }, [dispatch])
 
   const deleteOptions = {
     render: (message, onConfirm, onCancel) => {
@@ -34,8 +51,33 @@ function CourseItem({ course }) {
   
   const onSubmit = async (e) => {
     e.preventDefault()
-    dispatch(updateCourse({id: course._id, courseData: { text }}))
-    window.location.reload(false) /*{force reload window}*/
+    
+    for (let i = 0; i < grades.length; i++) { 
+      if (grades[i].course === courseid) {
+        var course = grades[i].course;
+        var coursename = text;
+        var requirement = grades[i].requirement;
+        var score = grades[i].score;
+        var total = grades[i].total;
+        var percentageScore = grades[i].percentageScore;
+        var percentageTotal = grades[i].percentageTotal;
+        dispatch(updateGrade( {id: grades[i]._id, gradeData: { course, coursename, requirement, score , total, percentageScore, percentageTotal }} ))
+      }
+    }
+    for (let i = 0; i < events.length; i++) { 
+      if (events[i].course == courseid) {
+        var course = events[i].course;
+        var coursename = text;
+        var title = events[i].title;
+        var start = events[i].start;
+        var end = events[i].end;
+        dispatch(updateEvent( {id: events[i]._id, eventData: {course, coursename, title, start, end }}))
+      }
+    }
+    var totalGrade = course.totalGrade;
+    var gradeCalc = course.gradeCalc;
+    dispatch(updateCourse({id: courseid, courseData: { text,  totalGrade, gradeCalc }}))
+    window.location.href = 'http://localhost:3000/courses'
   }
 
   const onChange = (e) => {
@@ -49,6 +91,17 @@ function CourseItem({ course }) {
     e.preventDefault()
     const result = await confirm("Are you sure?", deleteOptions);
     if (result) {
+      for (let i = 0; i < grades.length; i++) { 
+        if (grades[i].course === courseid) {
+          var grade = grades[i]._id;
+          dispatch(deleteGrade( {grade} ))
+        }
+      }
+      for (let i = 0; i < events.length; i++) { 
+        if (events[i].course == courseid) {
+          dispatch(deleteEvent(events[i]._id))
+        }
+      }
       dispatch(deleteCourse(course._id))
       return;
     }
