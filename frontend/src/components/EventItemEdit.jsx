@@ -62,8 +62,11 @@ function EventItemEdit( {event}) {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
       if (result) {
-        var selected = document.getElementById('dropdown-course');
-        coursename = selected.options[selected.selectedIndex].text;
+        for (let i = 0; i < courses.length; i++) { 
+          if (course == courses[i]._id) {
+            coursename = courses[i].text
+          }
+        }
         dispatch(updateEvent( {id: event._id, eventData: {course, coursename, title, start, end }}))
         window.location.reload(false) /*{force reload window}*/
         return;
@@ -100,11 +103,10 @@ function EventItemEdit( {event}) {
                 ...FormData,
                 course: e.target.value,
               })}>
-            <option> Select a course </option>
             {courses.map((course) => (
               <option key={course._id} value={course._id}> {course.text} </option>
             ))}
-            
+            <option> Select a course </option>
             </select>
           </div>
           <div className='form-group'>
