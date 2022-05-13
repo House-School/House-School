@@ -100,7 +100,7 @@ function Grades() {
                 </ul>    
                 <ul>
                   {courses.map((item,index) => (
-                      <li className = "grade-total-li" key={index}>{item.totalGrade}</li>
+                      <li className = "grade-total-li" key={index}>{item.totalGrade}%</li>
                   ))}
                 </ul> 
               </div>  

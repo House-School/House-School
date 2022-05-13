@@ -104,7 +104,7 @@ function Events() {
 
       <div className='eventbg'>
         <section className='event-heading'>
-          <h1 className='event-h1'>Events</h1>
+          <h1 className='event-h1'> Calendar </h1>
         </section>
 
         <div className='flex-container-filter'>
@@ -138,7 +138,7 @@ function Events() {
               eventClick={function(arg) {
                 Swal.fire({
                   title: arg.event.title,
-                  html: '<h3>[insert course here]</h3>' +
+                  html: '<h3> Course: </b>'+ arg.event.extendedProps.coursename + '</h3>' +
                         '<p><b>Start: </b>' + arg.event.start + '</p><p>'+ 
                         '<b>End: </b> ' + arg.event.start + '</p>',
                   showCloseButton: true,
