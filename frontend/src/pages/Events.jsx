@@ -140,7 +140,7 @@ function Events() {
                   title: arg.event.title,
                   html: '<h3> Course: </b>'+ arg.event.extendedProps.coursename + '</h3>' +
                         '<p><b>Start: </b>' + arg.event.start + '</p><p>'+ 
-                        '<b>End: </b> ' + arg.event.start + '</p>',
+                        '<b>End: </b> ' + arg.event.end + '</p>',
                   showCloseButton: true,
                   showConfirmButton: false,
                 })
