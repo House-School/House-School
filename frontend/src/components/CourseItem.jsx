@@ -17,10 +17,12 @@ function CourseItem({ course }) {
   const { events } = useSelector(
     (state) => state.events
   )
+
+  var totalGrade = course.totalGrade;
+  var gradeCalc = course.gradeCalc;
   
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const courseid = course._id;
 
   const onClick = (e) => {
     e.preventDefault()
@@ -53,30 +55,28 @@ function CourseItem({ course }) {
     e.preventDefault()
     
     for (let i = 0; i < grades.length; i++) { 
-      if (grades[i].course === courseid) {
-        var course = grades[i].course;
+      if (grades[i].course === course._id) {
+        var courseid = grades[i].course;
         var coursename = text;
         var requirement = grades[i].requirement;
         var score = grades[i].score;
         var total = grades[i].total;
         var percentageScore = grades[i].percentageScore;
         var percentageTotal = grades[i].percentageTotal;
-        dispatch(updateGrade( {id: grades[i]._id, gradeData: { course, coursename, requirement, score , total, percentageScore, percentageTotal }} ))
+        dispatch(updateGrade( {id: grades[i]._id, gradeData: { courseid, coursename, requirement, score , total, percentageScore, percentageTotal }} ))
       }
     }
     for (let i = 0; i < events.length; i++) { 
-      if (events[i].course == courseid) {
-        var course = events[i].course;
+      if (events[i].course == course._id) {
+        var courseid = events[i].course;
         var coursename = text;
         var title = events[i].title;
         var start = events[i].start;
         var end = events[i].end;
-        dispatch(updateEvent( {id: events[i]._id, eventData: {course, coursename, title, start, end }}))
+        dispatch(updateEvent( {id: events[i]._id, eventData: {courseid, coursename, title, start, end }}))
       }
     }
-    var totalGrade = course.totalGrade;
-    var gradeCalc = course.gradeCalc;
-    dispatch(updateCourse({id: courseid, courseData: { text,  totalGrade, gradeCalc }}))
+    dispatch(updateCourse({id: course._id, courseData: { text,  totalGrade, gradeCalc }}))
     window.location.href = 'http://localhost:3000/courses'
   }
 
@@ -92,13 +92,13 @@ function CourseItem({ course }) {
     const result = await confirm("Are you sure?", deleteOptions);
     if (result) {
       for (let i = 0; i < grades.length; i++) { 
-        if (grades[i].course === courseid) {
+        if (grades[i].course === course._id) {
           var grade = grades[i]._id;
           dispatch(deleteGrade( {grade} ))
         }
       }
       for (let i = 0; i < events.length; i++) { 
-        if (events[i].course == courseid) {
+        if (events[i].course == course._id) {
           dispatch(deleteEvent(events[i]._id))
         }
       }
