@@ -12,6 +12,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction';
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import Swal from 'sweetalert2';
 
 function Events() {
   const navigate = useNavigate()
@@ -133,6 +134,16 @@ function Events() {
                 left: "prev,next today",
                 center: "title",
                 right: "dayGridMonth,timeGridWeek,timeGridDay"
+              }}
+              eventClick={function(arg) {
+                Swal.fire({
+                  title: arg.event.title,
+                  html: '<h3>[insert course here]</h3>' +
+                        '<p><b>Start: </b>' + arg.event.start + '</p><p>'+ 
+                        '<b>End: </b> ' + arg.event.start + '</p>',
+                  showCloseButton: true,
+                  showConfirmButton: false,
+                })
               }}
               events={filterEvents}
               height={400}
