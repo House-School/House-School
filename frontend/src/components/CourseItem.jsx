@@ -94,7 +94,7 @@ function CourseItem({ course }) {
       for (let i = 0; i < grades.length; i++) { 
         if (grades[i].course === course._id) {
           var grade = grades[i]._id;
-          dispatch(deleteGrade( {grade} ))
+          dispatch(deleteGrade( grades[i]._id ))
         }
       }
       for (let i = 0; i < events.length; i++) { 
