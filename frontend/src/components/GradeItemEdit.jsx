@@ -161,9 +161,6 @@ function GradeItemEdit({ grade }) {
                 Edit
           </button>
           <button className='addgrade_btn' onClick ={onClick}>Delete</button>
-          <button className='addgrade_btn' onClick={(e) => navigate('/grades/')}>
-              Cancel
-            </button>
           </form> 
         </section>
     </>

@@ -73,6 +73,14 @@ function Events() {
     navigate('/events/edit')
   }
 
+  const onRewards = () => {
+    navigate('/rewards')
+  }
+
+  const onLinking = () => {
+    navigate('/accountlinking')
+  }
+
   var courseFilter = {course: ''}
   const [filterData, setFilterData] = useState(courseFilter)
   var { course } = filterData
@@ -98,8 +106,8 @@ function Events() {
           <button className='side-menu-item-above'onClick={onCourses}>Courses</button>
           <button className='side-menu-selected' onClick={onCalendar}>Calendar</button>
           <button className='side-menu-item' onClick={onGrades}>Grades</button>
-          <button className='side-menu-item'>Rewards</button>
-          <button className='side-menu-item'>Account linking</button>
+          <button className='side-menu-item' onClick={onRewards}>Rewards</button>
+          <button className='side-menu-item' onClick={onLinking}>Account linking</button>
       </div>
 
       <div className='eventbg'>

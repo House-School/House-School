@@ -59,6 +59,7 @@ function Login() {
   return (
     <>
     <div className="loginbg">
+    <img src={require('../images/undraw_road_to_knowledge_m8s0.png')} className="loginimg"/>
       <section className="login-heading">
         <h1 className='login-h1'>
           <FaSignInAlt /> Login

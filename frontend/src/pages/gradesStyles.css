@@ -223,7 +223,7 @@ input[type=grades-text] {
   flex-wrap: nowrap;
   overflow: auto;
   position: relative;
-  justify-content: flex-start;
+  justify-content: center;
   row-gap: 0px;
 }
 
@@ -235,7 +235,7 @@ input[type=grades-text] {
   padding: 0px 30px;
   overflow: auto;
   position: relative;
-  justify-content: flex-start;
+  justify-content: center;
   row-gap: 0px;
 }
 

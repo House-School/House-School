@@ -2,6 +2,7 @@ import { FaSignOutAlt, FaLaptopHouse } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import "../index.css"
 
 function Header() {
   const navigate = useNavigate()
@@ -17,7 +18,8 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to='/'><FaLaptopHouse /> House School?</Link>
+        <img src={require('../images/test-logo3.png')} className="mainlogo"/>
+        <Link to='/' className='maintitle'>House School?</Link>
       </div>
       <ul>
         {user ? (

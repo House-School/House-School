@@ -54,6 +54,14 @@ function Grades() {
     navigate('/events')
   }
 
+  const onRewards = () => {
+    navigate('/rewards')
+  }
+
+  const onLinking = () => {
+    navigate('/accountlinking')
+  }
+
   return (
     <>
     <div className='flex-container'>
@@ -63,8 +71,8 @@ function Grades() {
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
           <button className='side-menu-item-above' onClick={onCalendar}>Calendar</button>
           <button className='side-menu-selected'>Grades</button>
-          <button className='side-menu-item'>Rewards</button>
-          <button className='side-menu-item'>Account linking</button>
+          <button className='side-menu-item' onClick={onRewards}>Rewards</button>
+          <button className='side-menu-item' onClick={onLinking}>Account linking</button>
       </div>
       <div className='gradebg'>
         <section className='grade-heading'>

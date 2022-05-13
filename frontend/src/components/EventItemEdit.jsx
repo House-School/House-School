@@ -103,10 +103,10 @@ function EventItemEdit( {event}) {
                 ...FormData,
                 course: e.target.value,
               })}>
+            <option> Select a course </option>
             {courses.map((course) => (
               <option key={course._id} value={course._id}> {course.text} </option>
             ))}
-            <option> Select a course </option>
             </select>
           </div>
           <div className='form-group'>

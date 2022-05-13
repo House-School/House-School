@@ -13,6 +13,8 @@ import GradesAdd from './pages/GradesAdd'
 import GradesEdit from './pages/GradesEdit'
 import Events from './pages/Events'
 import EventsEdit from './pages/EventsEdit'
+import Rewards from './pages/Rewards'
+import AccountLinking from './pages/AccountLinking'
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
             <Route path='/grades/edit' element={<GradesEdit />} /> // Route to Edit Grades
             <Route path='/events' element={<Events />} />
             <Route path='/events/edit' element={<EventsEdit />} /> // Route to Edit Events
+            <Route path='/rewards' element={<Rewards />} />
+            <Route path='/accountlinking' element={<AccountLinking />} />
           </Routes>
         </div>
       </Router>

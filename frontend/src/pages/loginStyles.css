@@ -169,3 +169,12 @@
     font-size: 1.5rem;
   }
 }
+
+.loginimg {
+  background-image: url(../images/undraw_road_to_knowledge_m8s0.png);
+  display: block;
+  position: fixed;
+  width: 450px;
+  margin-top: 120px;
+  margin-left: 30px;
+}

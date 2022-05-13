@@ -81,6 +81,14 @@ function Dashboard() {
     navigate('/events')
   }
 
+  const onRewards = () => {
+    navigate('/rewards')
+  }
+
+  const onLinking = () => {
+    navigate('/accountlinking')
+  }
+
   return (
     <>
     <div className='flex-container'>
@@ -90,8 +98,8 @@ function Dashboard() {
           <button className='side-menu-item' onClick={onCourses}>Courses</button>
           <button className='side-menu-item' onClick={onCalendar}>Calendar</button>
           <button className='side-menu-item' onClick={onGrades}>Grades</button>
-          <button className='side-menu-item'>Rewards</button>
-          <button className='side-menu-item'>Account linking</button>
+          <button className='side-menu-item' onClick={onRewards}>Rewards</button>
+          <button className='side-menu-item' onClick={onLinking}>Account linking</button>
       </div>
 
       <div className='dashbg'>

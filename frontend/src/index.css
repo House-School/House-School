@@ -196,3 +196,15 @@ h3 {
     font-size: 1.5rem;
   }
 }
+
+.mainlogo {
+  background-image: url(images/test-logo3.png);
+  width: 50px;
+  position: fixed;
+  display: block;
+  margin-top: -10px;
+}
+
+.maintitle {
+  padding-left: 60px;
+}
