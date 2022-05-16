@@ -200,7 +200,7 @@ h3 {
 .mainlogo {
   background-image: url(images/test-logo3.png);
   width: 50px;
-  position: fixed;
+  position: absolute;
   display: block;
   margin-top: -10px;
 }
