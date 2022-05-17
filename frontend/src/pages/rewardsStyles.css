@@ -9,7 +9,7 @@
 .construction {
   background-image: url(../images/undraw_under_construction_46pa.png);
   display: block;
-  position: fixed;
+  position: absolute;
   width: 550px;
   margin-top: 70px;
   margin-left: 270px;
@@ -20,5 +20,5 @@
     font-weight: 600;
     margin-top: 400px;
     margin-left: -220px;
-    position: fixed;
+    position: absolute;
 }

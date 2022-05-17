@@ -33,7 +33,7 @@
 https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
 .flex-container-courses-fadetop {
     content:'';
-    margin-top: -455px;
+    margin-top: -445px;
     height: 20px;
     background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
     position: relative;
@@ -41,7 +41,7 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 
 .flex-container-courses-fadebottom {
     content:'';
-    margin-top: 415px;
+    margin-top: 405px;
     height: 20px;
     background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
     position: relative;

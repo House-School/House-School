@@ -28,7 +28,7 @@
 
 .grade-coursename {
   color:#302a92;
-  width: 770px;
+  width: 25em;
   padding-left: 30px;
   font-weight: 600;
   font-size: 20px;
@@ -42,7 +42,7 @@
 
 .grade-total {
   color:#302a92;
-  width: 200px;
+  width: 25em;
   padding-right: 30px;
   font-weight: 600;
   font-size: 20px;

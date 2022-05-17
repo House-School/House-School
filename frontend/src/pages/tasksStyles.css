@@ -166,7 +166,7 @@ input[type=tasksedit-text]:focus {
 }
 
 .flex-container-tasks {
-  height: 365px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -180,7 +180,7 @@ input[type=tasksedit-text]:focus {
 https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolling-div*/
 .flex-container-tasks-fadetop {
   content:'';
-  margin-top: -365px;
+  margin-top: -300px;
   height: 20px;
   background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
   position: relative;
@@ -188,7 +188,7 @@ https://stackoverflow.com/questions/17044284/css-faded-section-at-top-of-scrolli
 
 .flex-container-tasks-fadebottom {
   content:'';
-  margin-top: 325px;
+  margin-top: 260px;
   height: 20px;
   background: linear-gradient(to top, rgb(255, 255, 255) 0%, rgba(251, 251, 251, 0) 100%);
   position: relative;
