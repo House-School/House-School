@@ -25,7 +25,6 @@ function CourseForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    window.location.href = 'http://localhost:3000/courses'
     dispatch(createCourse({ text, totalGrade, gradeCalc }))
     window.location.reload(false) /*{force reload window}*/
   }

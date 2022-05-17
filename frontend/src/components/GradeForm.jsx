@@ -48,7 +48,7 @@ function GradeForm() {
     const onSubmit = async (e) => {
       e.preventDefault()
       const result = await confirm("Are you sure?", options);
-      window.location.href = 'http://localhost:3000/grades'
+      window.location.reload(false) /*{force reload window}*/
       if (result) {
         percentageScore = (score/total) * percentageTotal 
         var selected = document.getElementById('dropdown-course');

@@ -77,7 +77,7 @@ function CourseItem({ course }) {
       }
     }
     dispatch(updateCourse({id: course._id, courseData: { text,  totalGrade, gradeCalc }}))
-    window.location.href = 'http://localhost:3000/courses'
+    window.location.reload(false) /*{force reload window}*/
   }
 
   const onChange = (e) => {
